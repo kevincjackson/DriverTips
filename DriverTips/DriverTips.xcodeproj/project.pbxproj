@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE832262920A005EE0AB /* AppDelegate.swift */; };
-		0A80FE862262920A005EE0AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE852262920A005EE0AB /* ViewController.swift */; };
+		0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */; };
 		0A80FE892262920A005EE0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE872262920A005EE0AB /* Main.storyboard */; };
 		0A80FE8B2262920B005EE0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8A2262920B005EE0AB /* Assets.xcassets */; };
 		0A80FE8E2262920B005EE0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A80FE832262920A005EE0AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A80FE852262920A005EE0AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesViewController.swift; sourceTree = "<group>"; };
 		0A80FE882262920A005EE0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A80FE8A2262920B005EE0AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A80FE8D2262920B005EE0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +35,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A507A70226295D300AB8763 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = ../Model;
+			sourceTree = "<group>";
+		};
+		0A507A71226295DA00AB8763 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */,
+				0A80FE832262920A005EE0AB /* AppDelegate.swift */,
+			);
+			name = Controller;
+			path = ../Model/Controller;
+			sourceTree = "<group>";
+		};
+		0A507A72226295F400AB8763 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A80FE872262920A005EE0AB /* Main.storyboard */,
+				0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0A80FE772262920A005EE0AB = {
 			isa = PBXGroup;
 			children = (
@@ -54,11 +81,10 @@
 		0A80FE822262920A005EE0AB /* DriverTips */ = {
 			isa = PBXGroup;
 			children = (
-				0A80FE832262920A005EE0AB /* AppDelegate.swift */,
-				0A80FE852262920A005EE0AB /* ViewController.swift */,
-				0A80FE872262920A005EE0AB /* Main.storyboard */,
+				0A507A72226295F400AB8763 /* View */,
+				0A507A71226295DA00AB8763 /* Controller */,
+				0A507A70226295D300AB8763 /* Model */,
 				0A80FE8A2262920B005EE0AB /* Assets.xcassets */,
-				0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */,
 				0A80FE8F2262920B005EE0AB /* Info.plist */,
 			);
 			path = DriverTips;
@@ -135,7 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A80FE862262920A005EE0AB /* ViewController.swift in Sources */,
+				0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */,
 				0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
