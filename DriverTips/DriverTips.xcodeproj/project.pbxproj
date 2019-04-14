@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7D2262EA220057160D /* Delivery.swift */; };
 		0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE832262920A005EE0AB /* AppDelegate.swift */; };
 		0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */; };
 		0A80FE892262920A005EE0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE872262920A005EE0AB /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3FAC7D2262EA220057160D /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A80FE832262920A005EE0AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 		0A507A70226295D300AB8763 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A3FAC7D2262EA220057160D /* Delivery.swift */,
 			);
 			name = Model;
 			path = ../Model;
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */,
+				0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */,
 				0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
