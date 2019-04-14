@@ -13,9 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Inject State
+        let deliveryStore = DeliveryStore()
+        let deliveriesViewController = window!.rootViewController as! DeliveriesViewController
+        deliveriesViewController.deliveryStore = deliveryStore
+        
         return true
     }
 
