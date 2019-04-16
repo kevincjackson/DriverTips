@@ -38,7 +38,8 @@ class Delivery: NSObject {
                       credit: Double.random(in: 0...10),
                       date: Date(),
                       order: Int.random(in: 0...300),
-                      notes: ["", "Left pizza", "Scary dogs"][Int.random(in: 0...2)],
+                      notes: ["", "Left pizza on porch. Lots of boxes on porch. Doesn't look like they've been home in awhile.", "Scary dogs."][Int.random(in: 0...2)],
+                      payout: [0, 3.0, 5.0][Int.random(in: 0...1)],
                       tripComp: 1.75
                       )
         }
