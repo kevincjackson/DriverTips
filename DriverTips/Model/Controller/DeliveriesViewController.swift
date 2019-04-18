@@ -69,6 +69,7 @@ extension DeliveriesViewController: UITableViewDataSource {
         cell.tripCompLabel.text = String(format: "Trip Comp $%.2f", delivery.tripComp)
         cell.payoutLabel.text = delivery.payout != 0 ? String(format: "Payout $%.2f", delivery.payout) : ""
         cell.notesLabel.text = delivery.notes
+        cell.totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExPayout)
 
         return cell
     }

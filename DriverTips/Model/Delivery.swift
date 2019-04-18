@@ -11,6 +11,7 @@ import Foundation
 
 class Delivery: NSObject {
     
+    // Stored Properties
     var address: String
     var cash: Double
     var credit: Double
@@ -19,6 +20,11 @@ class Delivery: NSObject {
     var notes: String
     var payout: Double
     var tripComp: Double
+    
+    // Computed properties
+    var totalExPayout: Double {
+        return cash + credit + tripComp
+    }
     
     init(address: String = "", cash: Double = 0, credit: Double = 0, date: Date = Date(), order: Int = 0, notes: String = "", payout: Double = 0, tripComp: Double = 0) {
         self.address = address

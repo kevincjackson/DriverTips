@@ -18,6 +18,7 @@ class DeliveryCell: UITableViewCell {
     @IBOutlet weak var tripCompLabel: UILabel!
     @IBOutlet weak var payoutLabel: UILabel!
     @IBOutlet weak var notesLabel: UILabel!
+    @IBOutlet weak var totalExPayoutLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
