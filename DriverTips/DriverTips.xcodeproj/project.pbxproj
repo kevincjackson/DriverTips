@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A1CCD2F22685F1D00C3E7EF /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1CCD2E22685F1D00C3E7EF /* ShowViewController.swift */; };
+		0A1CCD2F22685F1D00C3E7EF /* ShowDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */; };
 		0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7D2262EA220057160D /* Delivery.swift */; };
 		0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */; };
 		0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE832262920A005EE0AB /* AppDelegate.swift */; };
@@ -16,10 +16,11 @@
 		0A80FE8B2262920B005EE0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8A2262920B005EE0AB /* Assets.xcassets */; };
 		0A80FE8E2262920B005EE0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */; };
 		0AD14C472265921C00F3D833 /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD14C462265921C00F3D833 /* DeliveryCell.swift */; };
+		0AE71FF92268F3CD00267737 /* EditDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A1CCD2E22685F1D00C3E7EF /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowViewController.swift; path = Model/Controller/ShowViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowDeliveryViewController.swift; path = Model/Controller/ShowDeliveryViewController.swift; sourceTree = SOURCE_ROOT; };
 		0A3FAC7D2262EA220057160D /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStore.swift; sourceTree = "<group>"; };
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +31,7 @@
 		0A80FE8D2262920B005EE0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A80FE8F2262920B005EE0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AD14C462265921C00F3D833 /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeliveryCell.swift; path = Model/Controller/DeliveryCell.swift; sourceTree = SOURCE_ROOT; };
+		0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeliveryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +58,11 @@
 		0A507A71226295DA00AB8763 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0A80FE832262920A005EE0AB /* AppDelegate.swift */,
 				0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */,
 				0AD14C462265921C00F3D833 /* DeliveryCell.swift */,
-				0A1CCD2E22685F1D00C3E7EF /* ShowViewController.swift */,
-				0A80FE832262920A005EE0AB /* AppDelegate.swift */,
+				0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */,
+				0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */,
 			);
 			name = Controller;
 			path = ../Model/Controller;
@@ -176,9 +179,10 @@
 				0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */,
 				0AD14C472265921C00F3D833 /* DeliveryCell.swift in Sources */,
 				0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */,
+				0AE71FF92268F3CD00267737 /* EditDeliveryViewController.swift in Sources */,
 				0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */,
 				0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */,
-				0A1CCD2F22685F1D00C3E7EF /* ShowViewController.swift in Sources */,
+				0A1CCD2F22685F1D00C3E7EF /* ShowDeliveryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

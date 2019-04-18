@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShowViewController: UITableViewController {
+class ShowDeliveryViewController: UITableViewController {
 
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -25,10 +25,16 @@ class ShowViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Navigation
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
+        title = "Delivery"
+
+        // Set Delivery Model
         let delivery = Delivery(random: true)
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
+        // Set Delivery View
         orderLabel.text = "\(delivery.order)"
         addressLabel.text = delivery.address
         dateLabel.text = dateFormatterPrint.string(from: delivery.date)
@@ -39,8 +45,9 @@ class ShowViewController: UITableViewController {
         payoutLabel.text = delivery.payout != 0 ? String(format: "$%.2f", delivery.payout) : ""
         notesLabel.text = "Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum"
     }
-
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    
+    @objc func editButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "gotoDeliveryEdit", sender: self)
     }
+    
 }

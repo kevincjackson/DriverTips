@@ -23,18 +23,7 @@ class DeliveriesViewController: UIViewController {
         tableView.estimatedRowHeight = 100
     }
 
-    // MARK: - Target-Actions
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        if tableView.isEditing {
-            sender.setTitle("Edit", for: .normal)
-            tableView.setEditing(false, animated: true)
-        }
-        else {
-            sender.setTitle("Done", for: .normal)
-            tableView.setEditing(true, animated: true)
-        }
-    }
-    
+
     @IBAction func addButtonPressed(_ sender: UIButton) {
         let newDelivery = deliveryStore.createDelivery()
         guard let row = deliveryStore.all.firstIndex(of: newDelivery) else {
@@ -104,7 +93,6 @@ extension DeliveriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        print("heightForFooterInSection")
         return deliveryStore.all.isEmpty ? 60 : 0
     }
 }

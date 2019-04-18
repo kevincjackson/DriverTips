@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Inject State
         let deliveryStore = DeliveryStore()
-        let deliveriesVC = window!.rootViewController as! DeliveriesViewController
+        let navVC = window!.rootViewController as! UINavigationController
+        let deliveriesVC = navVC.viewControllers.first as! DeliveriesViewController
         deliveriesVC.deliveryStore = deliveryStore
         
         return true
