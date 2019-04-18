@@ -28,9 +28,8 @@ class ShowDeliveryViewController: UITableViewController {
         // Navigation
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
         title = "Delivery"
-
+        
         // Set Delivery Model
-        let delivery = Delivery(random: true)
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
@@ -43,11 +42,11 @@ class ShowDeliveryViewController: UITableViewController {
         tripCompLabel.text = String(format: "$%.2f", delivery.tripComp)
         totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExPayout)
         payoutLabel.text = delivery.payout != 0 ? String(format: "$%.2f", delivery.payout) : ""
-        notesLabel.text = "Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum Lorem ipsum lorum ipsum"
+        notesLabel.text = delivery.notes
     }
-    
+
     @objc func editButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "gotoDeliveryEdit", sender: self)
+        performSegue(withIdentifier: "gotoEditDelivery", sender: self)
     }
     
 }

@@ -23,7 +23,7 @@ class DeliveriesViewController: UIViewController {
         tableView.estimatedRowHeight = 100
     }
 
-
+    // MARK: - Target-Actions
     @IBAction func addButtonPressed(_ sender: UIButton) {
         let newDelivery = deliveryStore.createDelivery()
         guard let row = deliveryStore.all.firstIndex(of: newDelivery) else {
@@ -34,7 +34,22 @@ class DeliveriesViewController: UIViewController {
         tableView.footerView(forSection: 0)?.textLabel!.text = ""
     }
     
+    // MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "gotoShowDelivery":
+            let showVC = segue.destination as! ShowDeliveryViewController
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let selectedDelivery = deliveryStore.all[row]
+                showVC.delivery = selectedDelivery
+            }
+        default:
+            preconditionFailure("Unknown segue.")
+        }
+    }
+    
 }
+
 
 // MARK: - Table View DataSource
 extension DeliveriesViewController: UITableViewDataSource {
@@ -100,5 +115,8 @@ extension DeliveriesViewController: UITableViewDataSource {
 // MARK: - Table View Delegate
 extension DeliveriesViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "gotoShowDelivery", sender: self)
+    }
 }
 

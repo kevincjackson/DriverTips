@@ -118,7 +118,6 @@
                                     <outlet property="payoutLabel" destination="J8M-cA-XzQ" id="9xm-uv-VAW"/>
                                     <outlet property="totalExPayoutLabel" destination="pI2-TZ-H02" id="FGY-vP-Tpo"/>
                                     <outlet property="tripCompLabel" destination="uoC-Bk-qHN" id="OGk-25-LBU"/>
-                                    <segue destination="mos-rt-JbU" kind="show" id="Vaf-Nd-fQS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -132,6 +131,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Cmd-SE-6tc" id="Q8A-qm-EGh"/>
+                        <segue destination="mos-rt-JbU" kind="show" identifier="gotoShowDelivery" id="0Uo-9E-Eze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -383,7 +383,7 @@
                         <outlet property="payoutLabel" destination="knf-TF-EDq" id="QMT-B1-dgu"/>
                         <outlet property="totalExPayoutLabel" destination="mdW-RX-9Jr" id="azh-Rw-ykS"/>
                         <outlet property="tripCompLabel" destination="zHo-0E-cyA" id="c4b-ZR-60R"/>
-                        <segue destination="7e9-Bj-kCQ" kind="presentation" identifier="gotoDeliveryEdit" id="tuc-Ey-RAg"/>
+                        <segue destination="7e9-Bj-kCQ" kind="presentation" identifier="gotoEditDelivery" id="tuc-Ey-RAg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulr-0X-Ysj" userLabel="First Responder" sceneMemberID="firstResponder"/>
