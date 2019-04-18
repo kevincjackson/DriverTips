@@ -388,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ulr-0X-Ysj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1899" y="50"/>
+            <point key="canvasLocation" x="1833" y="50"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ep9-qG-6pv">
@@ -457,7 +457,7 @@
                                                             <rect key="frame" x="30.5" y="0.0" width="343.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -556,7 +556,7 @@
                                                             <rect key="frame" x="74.5" y="0.0" width="299.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -589,7 +589,7 @@
                                                             <rect key="frame" x="82" y="0.0" width="292" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -622,7 +622,7 @@
                                                             <rect key="frame" x="114.5" y="0.0" width="259.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -655,7 +655,7 @@
                                                             <rect key="frame" x="87.5" y="0.0" width="286.5" height="27.5"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -712,7 +712,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THr-gy-R9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2760.8695652173915" y="49.553571428571423"/>
+            <point key="canvasLocation" x="2723" y="50"/>
         </scene>
     </scenes>
 </document>
