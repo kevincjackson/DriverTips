@@ -64,10 +64,10 @@ extension DeliveriesViewController: UITableViewDataSource {
         cell.orderLabel.text = "#\(delivery.order)"
         cell.addressLabel.text = delivery.address
         cell.dateLabel.text = dateFormatterPrint.string(from: delivery.date)
-        cell.cashLabel.text = String(format: "$%.2f", delivery.cash)
-        cell.creditLabel.text = String(format: "$%.2f", delivery.credit)
-        cell.payoutLabel.text = String(format: "$%.2f", delivery.payout)
-        cell.tripCompLabel.text = String(format: "$%.2f", delivery.tripComp)
+        cell.cashLabel.text = String(format: "Cash $%.2f", delivery.cash)
+        cell.creditLabel.text = String(format: "Credit $%.2f", delivery.credit)
+        cell.tripCompLabel.text = String(format: "Trip Comp $%.2f", delivery.tripComp)
+        cell.payoutLabel.text = delivery.payout != 0 ? String(format: "Payout $%.2f", delivery.payout) : ""
         cell.notesLabel.text = delivery.notes
 
         return cell
