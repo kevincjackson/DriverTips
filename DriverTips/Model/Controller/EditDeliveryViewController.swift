@@ -70,7 +70,7 @@ class EditDeliveryViewController: UITableViewController {
         case "saveDelivery":
             delivery.order = Int(orderField.text!) ?? 0
             delivery.address = addressField.text!
-            delivery.date = Date()
+            delivery.date = delivery.date
             delivery.cash = Double(cashField.text!) ?? 0
             delivery.credit = Double(creditField.text!) ?? 0
             delivery.tripComp = Double(tripCompField.text!) ?? 0
@@ -81,7 +81,6 @@ class EditDeliveryViewController: UITableViewController {
         }
     }
     
-    @IBAction func cancel(_ segue: UIStoryboardSegue) {}
     @IBAction func saveDate(_ unwindSegue: UIStoryboardSegue) {
         let datePickerVC = unwindSegue.source as! DatePickerViewController
         delivery.date = datePickerVC.selectedDate!

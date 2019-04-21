@@ -27,6 +27,10 @@ class DatePickerViewController: UIViewController {
         selectedDate = datePicker.date
     }
     
+    
+    @IBAction func cancel(_ sender: UIStoryboardSegue) {
+        dismiss(animated: true, completion: nil)
+    }
 
 }
 

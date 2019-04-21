@@ -747,12 +747,12 @@
                                     <navigationItem title="Date PIcker" id="S9y-4o-oTl">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bvg-Af-U6o">
                                             <connections>
-                                                <segue destination="LvQ-m6-pft" kind="unwind" unwindAction="unwindToCancel:" id="pqU-7M-7Mz"/>
+                                                <action selector="cancel:" destination="cpq-xa-sot" id="aVi-1p-KS9"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="PNS-34-4sv">
                                             <connections>
-                                                <segue destination="LvQ-m6-pft" kind="unwind" unwindAction="unwindWithDate:" id="bCp-o5-Z4u"/>
+                                                <segue destination="LvQ-m6-pft" kind="unwind" identifier="saveDate" unwindAction="saveDate:" id="PCg-jN-Vk8"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
