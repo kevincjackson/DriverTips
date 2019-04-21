@@ -80,10 +80,39 @@ extension DeliveriesViewController: UITableViewDataSource {
         cell.orderLabel.text = "#\(delivery.order)"
         cell.addressLabel.text = delivery.address
         cell.dateLabel.text = dateFormatterPrint.string(from: delivery.date)
-        cell.cashLabel.text = String(format: "Cash $%.2f", delivery.cash)
-        cell.creditLabel.text = String(format: "Credit $%.2f", delivery.credit)
-        cell.tripCompLabel.text = String(format: "Trip Comp $%.2f", delivery.tripComp)
-        cell.payoutLabel.text = delivery.payout != 0 ? String(format: "Payout $%.2f", delivery.payout) : ""
+        
+        if delivery.cash != 0 {
+            cell.cashLabel.text = String(format: "Cash $%.2f", delivery.cash)
+            cell.cashLabel.isHidden = false
+        }
+        else {
+            cell.cashLabel.isHidden = true
+        }
+        
+        if delivery.credit != 0 {
+            cell.creditLabel.text = String(format: "Credit $%.2f", delivery.credit)
+            cell.creditLabel.isHidden = false
+        }
+        else {
+            cell.creditLabel.isHidden = true
+        }
+        
+        if delivery.tripComp != 0 {
+            cell.tripCompLabel.text = String(format: "Trip Comp $%.2f", delivery.tripComp)
+            cell.tripCompLabel.isHidden = false
+        }
+        else {
+            cell.tripCompLabel.isHidden = true
+        }
+        
+        if delivery.payout != 0 {
+            cell.payoutLabel.text = String(format: "Payout $%.2f", delivery.payout)
+            cell.payoutLabel.isHidden = false
+        }
+        else {
+            cell.payoutLabel.isHidden = true
+        }
+        
         cell.notesLabel.text = delivery.notes
         cell.totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExPayout)
 

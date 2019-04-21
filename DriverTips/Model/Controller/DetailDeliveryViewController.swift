@@ -21,6 +21,12 @@ class DetailDelivery: UITableViewController {
     @IBOutlet weak var notesLabel: UILabel!
 
     var delivery: Delivery!
+    var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .short
+        df.timeStyle = .short
+        return df
+    }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -34,18 +40,14 @@ class DetailDelivery: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Set Delivery Model
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "h:mm a"
-        
         // Set Delivery View
         orderLabel.text = "\(delivery.order)"
         addressLabel.text = delivery.address
-        dateLabel.text = dateFormatterPrint.string(from: delivery.date)
-        cashLabel.text = String(format: "$%.2f", delivery.cash)
-        creditLabel.text = String(format: "$%.2f", delivery.credit)
-        tripCompLabel.text = String(format: "$%.2f", delivery.tripComp)
-        totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExPayout)
+        dateLabel.text = dateFormatter.string(from: delivery.date)
+        cashLabel.text = delivery.cash != 0 ? String(format: "$%.2f", delivery.cash) : ""
+        creditLabel.text = delivery.credit != 0 ? String(format: "$%.2f", delivery.credit) : ""
+        tripCompLabel.text = delivery.tripComp != 0 ? String(format: "$%.2f", delivery.tripComp) : ""
+        totalExPayoutLabel.text = delivery.totalExPayout != 0 ? String(format: "$%.2f", delivery.totalExPayout) : ""
         payoutLabel.text = delivery.payout != 0 ? String(format: "$%.2f", delivery.payout) : ""
         notesLabel.text = delivery.notes
     }

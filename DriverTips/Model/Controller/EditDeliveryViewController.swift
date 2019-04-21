@@ -18,6 +18,7 @@ class EditDeliveryViewController: UITableViewController {
     @IBOutlet weak var tripCompField: UITextField!
     @IBOutlet weak var payoutField: UITextField!
     @IBOutlet weak var notesField: UITextView!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var delivery: Delivery!
     var isNewDelivery = false
@@ -35,21 +36,28 @@ class EditDeliveryViewController: UITableViewController {
         
         if isNewDelivery {
             delivery = Delivery()
-            navigationItem.title = "New Delivery"
+             navItem.title = "New Delivery"
+        }
+        else {
+            navItem.title = "Edit Delivery"
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        orderField.text = "\(delivery.order)"
+        orderField.text = delivery.order != 0 ? "\(delivery.order)" : ""
         addressField.text = delivery.address
         dateLabel.text = dateFormatter.string(from: delivery.date)
-        cashField.text = "\(delivery.cash)"
-        creditField.text = "\(delivery.credit)"
-        tripCompField.text = "\(delivery.tripComp)"
-        payoutField.text = "\(delivery.payout)"
+        cashField.text = delivery.cash != 0 ? "\(delivery.cash)" : ""
+        creditField.text = delivery.credit != 0 ? "\(delivery.credit)" : ""
+        tripCompField.text = delivery.tripComp != 0 ? "\(delivery.tripComp)" : ""
+        payoutField.text = delivery.payout != 0 ? "\(delivery.payout)" : ""
         notesField.text = delivery.notes
+        
+        if delivery.order == 0 {
+            orderField.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
