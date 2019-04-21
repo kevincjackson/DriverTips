@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A1CCD2F22685F1D00C3E7EF /* ShowDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */; };
+		0A1CCD2F22685F1D00C3E7EF /* DetailDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1CCD2E22685F1D00C3E7EF /* DetailDeliveryViewController.swift */; };
 		0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7D2262EA220057160D /* Delivery.swift */; };
 		0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */; };
+		0A42700E226AE5B1008F3ABD /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A42700D226AE5B1008F3ABD /* DatePickerViewController.swift */; };
 		0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE832262920A005EE0AB /* AppDelegate.swift */; };
 		0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */; };
 		0A80FE892262920A005EE0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE872262920A005EE0AB /* Main.storyboard */; };
@@ -20,9 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ShowDeliveryViewController.swift; path = Model/Controller/ShowDeliveryViewController.swift; sourceTree = SOURCE_ROOT; };
+		0A1CCD2E22685F1D00C3E7EF /* DetailDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailDeliveryViewController.swift; path = Model/Controller/DetailDeliveryViewController.swift; sourceTree = SOURCE_ROOT; };
 		0A3FAC7D2262EA220057160D /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStore.swift; sourceTree = "<group>"; };
+		0A42700D226AE5B1008F3ABD /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A80FE832262920A005EE0AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesViewController.swift; sourceTree = "<group>"; };
@@ -60,9 +62,10 @@
 			children = (
 				0A80FE832262920A005EE0AB /* AppDelegate.swift */,
 				0A80FE852262920A005EE0AB /* DeliveriesViewController.swift */,
-				0AD14C462265921C00F3D833 /* DeliveryCell.swift */,
-				0A1CCD2E22685F1D00C3E7EF /* ShowDeliveryViewController.swift */,
+				0A1CCD2E22685F1D00C3E7EF /* DetailDeliveryViewController.swift */,
 				0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */,
+				0AD14C462265921C00F3D833 /* DeliveryCell.swift */,
+				0A42700D226AE5B1008F3ABD /* DatePickerViewController.swift */,
 			);
 			name = Controller;
 			path = ../Model/Controller;
@@ -182,7 +185,8 @@
 				0AE71FF92268F3CD00267737 /* EditDeliveryViewController.swift in Sources */,
 				0A80FE842262920A005EE0AB /* AppDelegate.swift in Sources */,
 				0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */,
-				0A1CCD2F22685F1D00C3E7EF /* ShowDeliveryViewController.swift in Sources */,
+				0A1CCD2F22685F1D00C3E7EF /* DetailDeliveryViewController.swift in Sources */,
+				0A42700E226AE5B1008F3ABD /* DatePickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

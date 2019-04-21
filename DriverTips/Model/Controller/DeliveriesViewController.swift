@@ -13,41 +13,55 @@ class DeliveriesViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var deliveryStore: DeliveryStore!
+    var deliveries: [Delivery]!
     
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
+        deliveries = deliveryStore.deliveries
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        deliveries = deliveryStore.deliveries
+        tableView.reloadData()
     }
 
     // MARK: - Target-Actions
-    @IBAction func addButtonPressed(_ sender: UIButton) {
-        let newDelivery = deliveryStore.createDelivery()
-        guard let row = deliveryStore.all.firstIndex(of: newDelivery) else {
-           return
-        }
-        let indexPath = IndexPath(row: row, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        tableView.footerView(forSection: 0)?.textLabel!.text = ""
-    }
     
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "gotoShowDelivery":
-            let showVC = segue.destination as! ShowDeliveryViewController
-            if let row = tableView.indexPathForSelectedRow?.row {
-                let selectedDelivery = deliveryStore.all[row]
-                showVC.delivery = selectedDelivery
+        case "gotoNewDelivery":
+            let editVC = segue.destination as! EditDeliveryViewController
+            editVC.isNewDelivery = true
+        case "gotoDetailDelivery":
+            let showVC = segue.destination as! DetailDelivery
+            guard let row = tableView.indexPathForSelectedRow?.row else {
+                assertionFailure("No row selected.")
+                return
             }
+            let selectedDelivery = deliveries[row]
+            showVC.delivery = selectedDelivery
         default:
-            preconditionFailure("Unknown segue.")
+            preconditionFailure("Unknown segue identifier.")
         }
     }
     
+    @IBAction func saveDelivery(_ segue: UIStoryboardSegue) {
+        let editVC = segue.source as! EditDeliveryViewController
+        if let delivery = editVC.delivery {
+            if editVC.isNewDelivery {
+                deliveryStore.add(delivery)
+            }
+            else {
+                preconditionFailure("TODO Implement save editing delivery.")
+            }
+        }
+    
+    }
 }
 
 
@@ -55,13 +69,13 @@ class DeliveriesViewController: UIViewController {
 extension DeliveriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return deliveryStore.all.count
+        return deliveryStore.deliveries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryCell
-        let delivery = deliveryStore.all[indexPath.row]
+        let delivery = deliveries[indexPath.row]
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
@@ -81,20 +95,19 @@ extension DeliveriesViewController: UITableViewDataSource {
     // Deletion
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let delivery = deliveryStore.all[indexPath.row]
-            deliveryStore.deleteDelivery(delivery)
+            let delivery = deliveries[indexPath.row]
+            deliveries.remove(at: indexPath.row)
+            deliveryStore.remove(delivery)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        deliveryStore.moveDelivery(from: sourceIndexPath.row, to: destinationIndexPath.row)
-    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {}
     
     // MARK: - Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        if deliveryStore.all.isEmpty {
+        if deliveryStore.deliveries.isEmpty {
             let footerView = UITableViewHeaderFooterView()
             footerView.backgroundView = UIView(frame: footerView.bounds)
             footerView.backgroundView?.backgroundColor = UIColor.white
@@ -108,15 +121,10 @@ extension DeliveriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return deliveryStore.all.isEmpty ? 60 : 0
+        return deliveryStore.deliveries.isEmpty ? 60 : 0
     }
 }
 
 // MARK: - Table View Delegate
-extension DeliveriesViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "gotoShowDelivery", sender: self)
-    }
-}
+extension DeliveriesViewController: UITableViewDelegate {}
 

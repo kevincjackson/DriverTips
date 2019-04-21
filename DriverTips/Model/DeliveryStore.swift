@@ -10,25 +10,24 @@ import Foundation
 
 class DeliveryStore {
     
-    var all = [Delivery]()
+    private var all = [Delivery]()
+    var deliveries: [Delivery] {
+        return all
+    }
     
-    @discardableResult public func createDelivery() -> Delivery {
-        let delivery = Delivery(random: true)
+    public func add(_ delivery: Delivery) {
         all.append(delivery)
-        return delivery
     }
     
-    public func deleteDelivery(_ delivery: Delivery) {
-        guard let index = all.firstIndex(of: delivery) else {
-            return
+    public func remove(_ delivery: Delivery) {
+        if let index = all.firstIndex(where: { $0.identifier == delivery.identifier }) {
+            all.remove(at: index)
         }
-        all.remove(at: index)
     }
     
-    public func moveDelivery(from a: Int, to b: Int) {
-        let delivery = all[a]
-        all.remove(at: a)
-        all.insert(delivery, at: b)
+    public func update(_ delivery: Delivery) {
+        if let index = all.firstIndex(where: { $0.identifier == delivery.identifier }) {
+            all[index] = delivery
+        }
     }
-    
 }

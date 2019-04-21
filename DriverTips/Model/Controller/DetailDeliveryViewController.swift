@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShowDeliveryViewController: UITableViewController {
+class DetailDelivery: UITableViewController {
 
     @IBOutlet weak var orderLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -22,12 +22,17 @@ class ShowDeliveryViewController: UITableViewController {
 
     var delivery: Delivery!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Navigation
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonPressed))
         title = "Delivery"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // Set Delivery Model
         let dateFormatterPrint = DateFormatter()
@@ -45,6 +50,18 @@ class ShowDeliveryViewController: UITableViewController {
         notesLabel.text = delivery.notes
     }
 
+    // MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "gotoEditDelivery":
+            let editVC = segue.destination as! EditDeliveryViewController
+            editVC.delivery = delivery
+        default:
+            preconditionFailure("Unknown segue identifier.")
+        }
+    }
+    
+    // MARK: - Target-Actions
     @objc func editButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "gotoEditDelivery", sender: self)
     }
