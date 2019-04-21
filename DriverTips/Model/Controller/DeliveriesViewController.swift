@@ -28,8 +28,6 @@ class DeliveriesViewController: UIViewController {
         deliveries = deliveryStore.deliveries
         tableView.reloadData()
     }
-
-    // MARK: - Target-Actions
     
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,7 +55,7 @@ class DeliveriesViewController: UIViewController {
                 deliveryStore.add(delivery)
             }
             else {
-                preconditionFailure("TODO Implement save editing delivery.")
+                deliveryStore.update(delivery)
             }
         }
     
