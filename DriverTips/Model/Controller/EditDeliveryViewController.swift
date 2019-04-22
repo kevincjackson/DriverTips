@@ -9,7 +9,8 @@
 import UIKit
 
 class EditDeliveryViewController: UITableViewController {
-
+  
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var orderField: UITextField!
     @IBOutlet weak var addressField: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
@@ -18,8 +19,7 @@ class EditDeliveryViewController: UITableViewController {
     @IBOutlet weak var tripCompField: UITextField!
     @IBOutlet weak var payoutField: UITextField!
     @IBOutlet weak var notesField: UITextView!
-    @IBOutlet weak var navItem: UINavigationItem!
-    
+
     var delivery: Delivery!
     var isNewDelivery = false
     var dateFormatter: DateFormatter = {
@@ -66,7 +66,6 @@ class EditDeliveryViewController: UITableViewController {
         view.endEditing(true)
     }
 
-    
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
