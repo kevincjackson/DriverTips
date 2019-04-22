@@ -48,6 +48,7 @@ class DeliveriesViewController: UIViewController {
         }
     }
     
+
     @IBAction func saveDelivery(_ segue: UIStoryboardSegue) {
         let editVC = segue.source as! EditDeliveryViewController
         if let delivery = editVC.delivery {
@@ -58,8 +59,8 @@ class DeliveriesViewController: UIViewController {
                 deliveryStore.update(delivery)
             }
         }
-    
     }
+
 }
 
 

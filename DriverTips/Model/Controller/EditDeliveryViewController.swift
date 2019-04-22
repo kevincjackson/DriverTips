@@ -32,11 +32,10 @@ class EditDeliveryViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        addressField.delegate = self // TODO: Huh?
         
         if isNewDelivery {
             delivery = Delivery()
-             navItem.title = "New Delivery"
+            navItem.title = "New Delivery"
         }
         else {
             navItem.title = "Edit Delivery"
@@ -44,7 +43,7 @@ class EditDeliveryViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super .viewWillAppear(animated)
         
         orderField.text = delivery.order != 0 ? "\(delivery.order)" : ""
         addressField.text = delivery.address
@@ -54,7 +53,10 @@ class EditDeliveryViewController: UITableViewController {
         tripCompField.text = delivery.tripComp != 0 ? "\(delivery.tripComp)" : ""
         payoutField.text = delivery.payout != 0 ? "\(delivery.payout)" : ""
         notesField.text = delivery.notes
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if delivery.order == 0 {
             orderField.becomeFirstResponder()
         }
@@ -63,38 +65,42 @@ class EditDeliveryViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         view.endEditing(true)
     }
-    
-    // MARK: Target-Actions
-    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-    }
+
     
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "gotoDatePicker":
+            saveDelivery()
             let datePickerVC = segue.destination as! DatePickerViewController
+            datePickerVC.delegate = self
             datePickerVC.initialDate = delivery.date
         case "saveDelivery":
-            delivery.order = Int(orderField.text!) ?? 0
-            delivery.address = addressField.text!
-            delivery.date = delivery.date
-            delivery.cash = Double(cashField.text!) ?? 0
-            delivery.credit = Double(creditField.text!) ?? 0
-            delivery.tripComp = Double(tripCompField.text!) ?? 0
-            delivery.payout = Double(payoutField.text!) ?? 0
-            delivery.notes = notesField.text!
+            saveDelivery()
         default:
            preconditionFailure("Unknown segue identifier.")
         }
     }
     
-    @IBAction func saveDate(_ unwindSegue: UIStoryboardSegue) {
-        let datePickerVC = unwindSegue.source as! DatePickerViewController
-        delivery.date = datePickerVC.selectedDate!
+    // MARK: - Target-Actions
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Helper Methods
+    private func saveDelivery() {
+        delivery.order = Int(orderField.text!) ?? 0
+        delivery.address = addressField.text!
+        delivery.date = delivery.date
+        delivery.cash = Double(cashField.text!) ?? 0
+        delivery.credit = Double(creditField.text!) ?? 0
+        delivery.tripComp = Double(tripCompField.text!) ?? 0
+        delivery.payout = Double(payoutField.text!) ?? 0
+        delivery.notes = notesField.text!
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension EditDeliveryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -102,4 +108,9 @@ extension EditDeliveryViewController: UITextFieldDelegate {
     }
 }
 
-
+// MARK: - DatePickerViewDelegate
+extension EditDeliveryViewController: DatePickerViewDelegate {
+    func datePickerView(_ dateSelected: Date) {
+        delivery.date = dateSelected
+    }
+}

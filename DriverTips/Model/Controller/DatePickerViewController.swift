@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol DatePickerViewDelegate {
+    func datePickerView(_ dateSelected: Date)
+}
+
 class DatePickerViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var initialDate: Date?
-    var selectedDate: Date?
+    var delegate: DatePickerViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +26,13 @@ class DatePickerViewController: UIViewController {
             datePicker.setDate(initialDate, animated: true)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        selectedDate = datePicker.date
-    }
-    
-    
-    @IBAction func cancel(_ sender: UIStoryboardSegue) {
+
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
-
+    
+    @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
+        delegate?.datePickerView(datePicker.date)
+        dismiss(animated: true, completion: nil)
+    }
 }
-
