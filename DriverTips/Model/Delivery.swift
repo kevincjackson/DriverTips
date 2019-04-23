@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct Delivery {
+struct Delivery: Codable {
     
     // Stored Properties
     var address: String = ""
@@ -26,4 +26,5 @@ struct Delivery {
     var totalExPayout: Double {
         return cash + credit + tripComp
     }
+    
 }

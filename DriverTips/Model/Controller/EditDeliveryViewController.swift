@@ -28,7 +28,7 @@ class EditDeliveryViewController: UITableViewController {
         df.timeStyle = .short
         return df
     }()
-    
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +97,7 @@ class EditDeliveryViewController: UITableViewController {
         delivery.payout = Double(payoutField.text!) ?? 0
         delivery.notes = notesField.text!
     }
+
 }
 
 // MARK: - UITextFieldDelegate
