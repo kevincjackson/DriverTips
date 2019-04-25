@@ -17,6 +17,7 @@
 		0A80FE8E2262920B005EE0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */; };
 		0AD14C472265921C00F3D833 /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD14C462265921C00F3D833 /* DeliveryCell.swift */; };
 		0AE71FF92268F3CD00267737 /* EditDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */; };
+		0AF63D94227197A20017F0F2 /* AmountPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF63D93227197A20017F0F2 /* AmountPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		0A80FE8F2262920B005EE0AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AD14C462265921C00F3D833 /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeliveryCell.swift; path = Model/Controller/DeliveryCell.swift; sourceTree = SOURCE_ROOT; };
 		0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeliveryViewController.swift; sourceTree = "<group>"; };
+		0AF63D93227197A20017F0F2 /* AmountPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				0AE71FF82268F3CD00267737 /* EditDeliveryViewController.swift */,
 				0AD14C462265921C00F3D833 /* DeliveryCell.swift */,
 				0A42700D226AE5B1008F3ABD /* DatePickerViewController.swift */,
+				0AF63D93227197A20017F0F2 /* AmountPickerViewController.swift */,
 			);
 			name = Controller;
 			path = ../Model/Controller;
@@ -176,6 +179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF63D94227197A20017F0F2 /* AmountPickerViewController.swift in Sources */,
 				0A80FE862262920A005EE0AB /* DeliveriesViewController.swift in Sources */,
 				0AD14C472265921C00F3D833 /* DeliveryCell.swift in Sources */,
 				0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */,
