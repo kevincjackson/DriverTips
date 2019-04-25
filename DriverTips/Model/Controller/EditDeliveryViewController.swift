@@ -28,6 +28,7 @@ class EditDeliveryViewController: UITableViewController {
         df.timeStyle = .short
         return df
     }()
+    var datePicker: UIDatePicker!
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -40,6 +41,17 @@ class EditDeliveryViewController: UITableViewController {
         else {
             navItem.title = "Edit Delivery"
         }
+        
+        // Setup Date Picker
+        datePicker = UIDatePicker()
+        datePicker.setDate(delivery.date, animated: false)
+        datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
+        dateField.inputView = datePicker
+    }
+    
+    @objc func dateSelected() {
+        delivery.date = datePicker.date
+        dateField.text = dateFormatter.string(from: delivery.date)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,13 +81,6 @@ class EditDeliveryViewController: UITableViewController {
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "gotoAmountPicker":
-            break
-        case "gotoDatePicker":
-            saveDelivery()
-            let datePickerVC = segue.destination as! DatePickerViewController
-            datePickerVC.delegate = self
-            datePickerVC.initialDate = delivery.date
         case "saveDelivery":
             saveDelivery()
         default:
@@ -93,7 +98,7 @@ class EditDeliveryViewController: UITableViewController {
         delivery.order = Int(orderField.text!) ?? 0
         delivery.address = addressField.text!
         delivery.date = delivery.date
-//        delivery.cash = Double(cashField.text!) ?? 0
+        delivery.cash = Double(cashField.text!) ?? 0
         delivery.credit = Double(creditField.text!) ?? 0
         delivery.tripComp = Double(tripCompField.text!) ?? 0
         delivery.payout = Double(payoutField.text!) ?? 0
