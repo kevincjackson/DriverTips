@@ -32,7 +32,7 @@ class EditDeliveryViewController: UITableViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if isNewDelivery {
             delivery = Delivery()
             navItem.title = "New Delivery"
@@ -40,6 +40,8 @@ class EditDeliveryViewController: UITableViewController {
         else {
             navItem.title = "Edit Delivery"
         }
+        createPickerView()
+        createToolbar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,5 +114,68 @@ extension EditDeliveryViewController: UITextFieldDelegate {
 extension EditDeliveryViewController: DatePickerViewDelegate {
     func datePickerView(_ dateSelected: Date) {
         delivery.date = dateSelected
+    }
+}
+
+extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        pickerView.backgroundColor = .black
+        cashField.inputView = pickerView
+        
+    }
+    
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.barTintColor = .red
+        toolbar.tintColor = .green
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        cashField.inputAccessoryView = toolbar
+    }
+    
+    // Customization Option
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label: UILabel
+        
+        if let view = view as? UILabel {
+            label = view
+        }
+        else {
+            label = UILabel()
+        }
+        
+        label.textColor = .green
+        label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.text = ["a", "b", "c"][row]
+        
+        return label
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+
+    // This gets overriden if you have viewForRow
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return ["a", "b", "c"][row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        cashField.text = ["a", "b", "c"][row]
     }
 }

@@ -15,7 +15,7 @@ class DeliveryStore {
         return all
     }
 
-    let archiveURL: URL = {
+    let url: URL = {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return path.appendingPathComponent("deliveryStore.archive")
     }()
@@ -40,45 +40,34 @@ class DeliveryStore {
     // MARK: - Archive Functions
     @discardableResult public func archive() -> Bool {
         do {
-            // Swift -> Plist
-            let propertyListData = try PropertyListEncoder().encode(all)
+            // Swift -> Data
+            let data = try PropertyListEncoder().encode(all)
 
-            // Plist -> Archive Data
-            let archivedData = try NSKeyedArchiver.archivedData(withRootObject: propertyListData, requiringSecureCoding: false)
-
-            // Archive Data -> File
-            try archivedData.write(to: archiveURL)
+            // Data -> File
+            try data.write(to: url)
 
             print("Archive OK.")
             return true
+            
         } catch {
             print("Archive failed.")
             return false
         }
     }
 
-    public func unarchive() -> [Delivery]? {
-        do {
-            // File -> Archive Data
-            let archivedData = try Data(contentsOf: archiveURL)
-
-            // Archive Data -> Property List Data
-            let propertyListData = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(archivedData)
-
-            // Property List Data -> Swift
-            let deliveries = try PropertyListDecoder().decode([Delivery].self, from: propertyListData as! Data)
-
-            return deliveries
-        } catch  {
-
-            print("Unarchive failed.")
-            return nil
-        }
-    }
-
     init() {
-        let deliveries = unarchive()
-        all = deliveries ?? []
+        do {
+            // File -> Data
+            let data = try Data(contentsOf: url)
+            
+            // Data -> Swift
+            all = try PropertyListDecoder().decode([Delivery].self, from: data )
+            
+            print("Unarchive OK.")
+            
+        } catch  {
+            print("Unarchive failed.")
+        }
     }
 
 }
