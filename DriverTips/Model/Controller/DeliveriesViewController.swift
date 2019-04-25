@@ -54,6 +54,7 @@ class DeliveriesViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelDelivery(_ segue: UIStoryboardSegue) {}
 
     @IBAction func saveDelivery(_ segue: UIStoryboardSegue) {
         let editVC = segue.source as! EditDeliveryViewController
@@ -74,7 +75,6 @@ class DeliveriesViewController: UIViewController {
         hudPayoutLabel.text = "\(deliveries.reduce(0) { $0 + $1.payout })"
     }
     
-
 }
 
 // MARK: - Table View DataSource

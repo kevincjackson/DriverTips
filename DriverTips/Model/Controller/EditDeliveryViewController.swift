@@ -29,11 +29,26 @@ class EditDeliveryViewController: UITableViewController {
         return df
     }()
     var datePicker: UIDatePicker!
+    var toolbarWithDoneButton: UIToolbar = {
+        let toolbar = UIToolbar()
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
+        toolbar.setItems([space, done], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.sizeToFit()
+        return toolbar
+    }()
+
+    let currencyPickerOptions = (
+        dollars: Array(0...300).map { String($0) },
+        cents: Array(0...99).map { String(format: "%02i", $0) }
+    )
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Delivery and Titles
         if isNewDelivery {
             delivery = Delivery()
             navItem.title = "New Delivery"
@@ -42,11 +57,31 @@ class EditDeliveryViewController: UITableViewController {
             navItem.title = "Edit Delivery"
         }
         
+        // Setup Currency Pickers
+        [cashField, creditField, payoutField]
+            .enumerated()
+            .forEach {
+                let currencyPicker = UIPickerView()
+                currencyPicker.tag = $0
+                currencyPicker.delegate = self
+                currencyPicker.dataSource = self
+                $1?.inputView = currencyPicker
+            }
+
         // Setup Date Picker
         datePicker = UIDatePicker()
         datePicker.setDate(delivery.date, animated: false)
         datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
         dateField.inputView = datePicker
+
+        // Set Input Accessory Views
+        [orderField, addressField, dateField, cashField, creditField, tripCompField, payoutField]
+            .forEach { $0?.inputAccessoryView = toolbarWithDoneButton }
+        notesField.inputAccessoryView = toolbarWithDoneButton
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func dateSelected() {
@@ -81,16 +116,13 @@ class EditDeliveryViewController: UITableViewController {
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
+        case "cancelDelivery":
+            break
         case "saveDelivery":
             saveDelivery()
         default:
            preconditionFailure("Unknown segue identifier.")
         }
-    }
-    
-    // MARK: - Target-Actions
-    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Helper Methods
@@ -104,7 +136,6 @@ class EditDeliveryViewController: UITableViewController {
         delivery.payout = Double(payoutField.text!) ?? 0
         delivery.notes = notesField.text!
     }
-
 }
 
 // MARK: - UITextFieldDelegate
@@ -115,9 +146,55 @@ extension EditDeliveryViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - DatePickerViewDelegate
-extension EditDeliveryViewController: DatePickerViewDelegate {
-    func datePickerView(_ dateSelected: Date) {
-        delivery.date = dateSelected
+extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 4
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return 1
+        case 1:
+            return currencyPickerOptions.dollars.count
+        case 2:
+            return 1
+        case 3:
+            return currencyPickerOptions.cents.count
+        default:
+            preconditionFailure()
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return "$"
+        case 1:
+            return currencyPickerOptions.dollars[row]
+        case 2:
+            return "."
+        case 3:
+            return currencyPickerOptions.cents[row]
+        default:
+            preconditionFailure()
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let dollars = currencyPickerOptions.dollars[pickerView.selectedRow(inComponent: 1)]
+        let cents = currencyPickerOptions.cents[pickerView.selectedRow(inComponent: 3)]
+        let text = "\(dollars).\(cents)"
+
+        switch pickerView.tag {
+        case 0:
+            cashField.text = text
+        case 1:
+            creditField.text = text
+        case 2:
+            payoutField.text = text
+        default:
+            preconditionFailure()
+        }
     }
 }
