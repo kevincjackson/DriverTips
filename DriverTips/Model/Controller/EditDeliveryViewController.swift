@@ -71,7 +71,7 @@ class EditDeliveryViewController: UITableViewController {
         // Setup Date Picker
         datePicker = UIDatePicker()
         datePicker.setDate(delivery.date, animated: false)
-        datePicker.addTarget(self, action: #selector(dateSelected), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerSelectedDate), for: .valueChanged)
         dateField.inputView = datePicker
 
         // Set Input Accessory Views
@@ -80,15 +80,6 @@ class EditDeliveryViewController: UITableViewController {
         notesField.inputAccessoryView = toolbarWithDoneButton
     }
 
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @objc func dateSelected() {
-        delivery.date = datePicker.date
-        dateField.text = dateFormatter.string(from: delivery.date)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         
@@ -136,6 +127,15 @@ class EditDeliveryViewController: UITableViewController {
         delivery.payout = Double(payoutField.text!) ?? 0
         delivery.notes = notesField.text!
     }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
+    @objc func datePickerSelectedDate() {
+        delivery.date = datePicker.date
+        dateField.text = dateFormatter.string(from: delivery.date)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -146,6 +146,7 @@ extension EditDeliveryViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: - Currency Picker
 extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 4

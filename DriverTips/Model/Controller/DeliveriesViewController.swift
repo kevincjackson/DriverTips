@@ -21,6 +21,11 @@ class DeliveriesViewController: UIViewController {
             updateHUD()
         }
     }
+    var currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
 
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
@@ -71,8 +76,8 @@ class DeliveriesViewController: UIViewController {
     // MARK: - Helper Functions
     private func updateHUD() {
         hudDeliveriesLabel.text = "\(deliveries.count)"
-        hudTotalLabel.text = "\(deliveries.reduce(0) { $0 + $1.totalExPayout })"
-        hudPayoutLabel.text = "\(deliveries.reduce(0) { $0 + $1.payout })"
+        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: deliveries.reduce(0) { $0 + $1.totalExPayout }))
+        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(value: deliveries.reduce(0) { $0 + $1.payout }))
     }
     
 }
