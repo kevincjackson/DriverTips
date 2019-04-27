@@ -23,9 +23,12 @@ struct Delivery: Codable {
     var identifier: Int = Int.random(in: 0...Int.max)
     
     // Computed properties
-    // MARK:  TODO Delete
-    var totalExPayout: Double {
+    var totalExcludingPayout: Double {
         return cash + credit + tripComp
+    }
+    
+    var total: Double {
+        return cash + credit + tripComp + payout
     }
     
 }

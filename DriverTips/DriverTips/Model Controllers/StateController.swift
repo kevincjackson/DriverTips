@@ -11,7 +11,7 @@ import Foundation
 class StateController {
     
     private let storageController: StorageController
-    public private(set) var worldState: WorldState
+    private(set) var worldState: WorldState
     
     // MARK: - Save & Init
     init(storageController: StorageController) {
@@ -19,22 +19,22 @@ class StateController {
         self.worldState = storageController.load() ?? WorldState()
     }
     
-    public func save() {
+    internal func save() {
         storageController.save(worldState: worldState)
     }
 
     // MARK: - Mutators
-    public func add(_ delivery: Delivery) {
+    internal func add(_ delivery: Delivery) {
         worldState.deliveries.append(delivery)
     }
     
-    public func remove(_ delivery: Delivery) {
+    internal func remove(_ delivery: Delivery) {
         if let index = worldState.deliveries.firstIndex(where: { $0.identifier == delivery.identifier }) {
             worldState.deliveries.remove(at: index)
         }
     }
     
-    public func update(_ delivery: Delivery) {
+    internal func update(_ delivery: Delivery) {
         if let index = worldState.deliveries.firstIndex(where: { $0.identifier == delivery.identifier }) {
             worldState.deliveries[index] = delivery
         }

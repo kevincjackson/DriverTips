@@ -21,6 +21,7 @@
 		0A8C48302274BEBE00F74A55 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48282274BEBE00F74A55 /* AddressViewController.swift */; };
 		0A8C48312274BEBE00F74A55 /* EditDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48292274BEBE00F74A55 /* EditDeliveryViewController.swift */; };
 		0A8C48352274D67600F74A55 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48342274D67600F74A55 /* Array.swift */; };
+		0A8C48372274F11200F74A55 /* DeliveryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48362274F11200F74A55 /* DeliveryList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		0A8C48282274BEBE00F74A55 /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		0A8C48292274BEBE00F74A55 /* EditDeliveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeliveryViewController.swift; sourceTree = "<group>"; };
 		0A8C48342274D67600F74A55 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		0A8C48362274F11200F74A55 /* DeliveryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				0A8C48342274D67600F74A55 /* Array.swift */,
 				0A3FAC7D2262EA220057160D /* Delivery.swift */,
+				0A8C48362274F11200F74A55 /* DeliveryList.swift */,
 				0A8C481F2274BD4600F74A55 /* WorldState.swift */,
 			);
 			name = Models;
@@ -205,6 +208,7 @@
 				0A8C482F2274BEBE00F74A55 /* HistoryViewController.swift in Sources */,
 				0A8C481B2274BBB900F74A55 /* StorageController.swift in Sources */,
 				0A8C482D2274BEBE00F74A55 /* DeliveryCell.swift in Sources */,
+				0A8C48372274F11200F74A55 /* DeliveryList.swift in Sources */,
 				0A8C48352274D67600F74A55 /* Array.swift in Sources */,
 				0A8C482E2274BEBE00F74A55 /* AppDelegate.swift in Sources */,
 			);

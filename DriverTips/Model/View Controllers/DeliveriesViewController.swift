@@ -83,7 +83,7 @@ class DeliveriesViewController: UIViewController {
     
     private func updateHUD() {
         hudDeliveriesLabel.text = "\(filteredDeliveries.count)"
-        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.totalExPayout }))
+        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.totalExcludingPayout }))
         hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.payout }))
     }
     
@@ -140,7 +140,7 @@ extension DeliveriesViewController: UITableViewDataSource {
         }
         
         cell.notesLabel.text = delivery.notes
-        cell.totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExPayout)
+        cell.totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExcludingPayout)
 
         return cell
     }

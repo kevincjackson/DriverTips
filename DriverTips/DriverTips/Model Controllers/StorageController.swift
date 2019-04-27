@@ -15,7 +15,7 @@ class StorageController {
         .appendingPathComponent("worldState.archive")
     
     @discardableResult
-    public func save(worldState: WorldState) -> Bool {
+    internal func save(worldState: WorldState) -> Bool {
         do {
             let data = try PropertyListEncoder().encode(worldState)
             try data.write(to: url)
@@ -28,7 +28,7 @@ class StorageController {
         }
     }
     
-    public func load() -> WorldState? {
+    internal func load() -> WorldState? {
         do {
             let data = try Data(contentsOf: url)
             let worldState = try PropertyListDecoder().decode(WorldState.self, from: data)

@@ -10,7 +10,6 @@ import Foundation
 
 struct WorldState: Codable {
     
-    // MARK: - Stored properties
     var deliveries = [Delivery]()
     
 }
