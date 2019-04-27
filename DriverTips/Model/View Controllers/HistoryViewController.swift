@@ -11,18 +11,35 @@ import UIKit
 class HistoryViewController: UITableViewController {
     
     var stateController: StateController!
+    var dates: [Date]!
+    var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateStyle = .full
+        return df
+    }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        dates = DeliveryList(stateController.worldState.deliveries).dates
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return dates.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+        let date = dates[indexPath.row]
+        cell.textLabel?.text = dateFormatter.string(from: date)
+        
+        return cell
+    }
+
 }

@@ -13,13 +13,17 @@ struct DeliveryList {
     //MARK: - Stored Properties
     private(set) var deliveries: [Delivery]
     
+    init(_ deliveries: [Delivery]) {
+        self.deliveries = deliveries
+    }
+    
     //MARK: - Computed Properties
     var addresses: [String] {
         return deliveries
-                .map { $0.address.trimmingCharacters(in: .whitespaces) }
-                .filter { !$0.isEmpty }
-                .removedDuplicates()
-                .sorted()
+            .map { $0.address.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+            .removedDuplicates()
+            .sorted()
     }
     
     var dates: [Date] {
@@ -27,6 +31,7 @@ struct DeliveryList {
             .map { Calendar.current.startOfDay(for: $0.date) }
             .removedDuplicates()
             .sorted()
+            .reversed()
     }
     
     var count: Int {

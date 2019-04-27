@@ -19,19 +19,12 @@ class AddressViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        addresses = getAddresses()
+        super.viewWillAppear(animated)
+       
+        addresses = DeliveryList(stateController.worldState.deliveries).addresses
         tableView.reloadData()
     }
 
-    // MARK: - Helper Methods
-    private func getAddresses() -> [String] {
-        return stateController.worldState.deliveries
-            .map { $0.address.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-            .removedDuplicates()
-            .sorted()
-    }
-    
     // MARK: - Table Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
