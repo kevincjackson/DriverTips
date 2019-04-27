@@ -16,7 +16,7 @@ class DeliveriesViewController: UIViewController {
     @IBOutlet weak var hudPayoutLabel: UILabel!
     
     var stateController: StateController!
-    var filteredDeliveries: [Delivery]! {
+    var deliveries: [Delivery]! {
         didSet {
             updateHUD()
         }
@@ -38,7 +38,7 @@ class DeliveriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        filteredDeliveries = filterDeliveries()
+        deliveries = DeliveryList(stateController.worldState.deliveries).filteredForToday.deliveries
         tableView.reloadData()
     }
     
@@ -54,7 +54,7 @@ class DeliveriesViewController: UIViewController {
             guard let row = tableView.indexPathForSelectedRow?.row else {
                 return
             }
-            editVC.delivery = filteredDeliveries[row]
+            editVC.delivery = deliveries[row]
         default:
             preconditionFailure("Unknown segue identifier.")
         }
@@ -75,16 +75,14 @@ class DeliveriesViewController: UIViewController {
     }
     
     // MARK: - Helper Functions
-    private func filterDeliveries() -> [Delivery] {
-        return stateController.worldState.deliveries
-            .filter { calendar.isDateInToday($0.date) }
-            .sorted(by: { $0.order < $1.order })
-    }
-    
+
     private func updateHUD() {
-        hudDeliveriesLabel.text = "\(filteredDeliveries.count)"
-        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.totalExcludingPayout }))
-        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.payout }))
+        let deliveryList = DeliveryList(deliveries)
+        hudDeliveriesLabel.text = "\(deliveryList.count)"
+        hudTotalLabel.text = currencyFormatter.string(from: NSNumber(
+            value: deliveryList.totalExcludingPayout))
+        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(
+            value: deliveryList.totalPayout))
     }
     
 }
@@ -93,13 +91,13 @@ class DeliveriesViewController: UIViewController {
 extension DeliveriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredDeliveries.count
+        return deliveries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryCell
-        let delivery = filteredDeliveries[indexPath.row]
+        let delivery = deliveries[indexPath.row]
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
@@ -148,8 +146,8 @@ extension DeliveriesViewController: UITableViewDataSource {
     // Deletion
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let delivery = filteredDeliveries[indexPath.row]
-            filteredDeliveries.remove(at: indexPath.row)
+            let delivery = deliveries[indexPath.row]
+            deliveries.remove(at: indexPath.row)
             stateController.remove(delivery)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -160,7 +158,7 @@ extension DeliveriesViewController: UITableViewDataSource {
     // MARK: - Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        if filteredDeliveries.isEmpty {
+        if deliveries.isEmpty {
             let footerView = UITableViewHeaderFooterView()
             footerView.backgroundView = UIView(frame: footerView.bounds)
             footerView.backgroundView?.backgroundColor = UIColor.white
@@ -174,7 +172,7 @@ extension DeliveriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return filteredDeliveries.isEmpty ? 60 : 0
+        return deliveries.isEmpty ? 60 : 0
     }
 }
 

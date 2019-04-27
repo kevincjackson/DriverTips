@@ -16,7 +16,7 @@ struct DeliveryList {
     init(_ deliveries: [Delivery]) {
         self.deliveries = deliveries
     }
-    
+
     //MARK: - Computed Properties
     var addresses: [String] {
         return deliveries
@@ -25,7 +25,11 @@ struct DeliveryList {
             .removedDuplicates()
             .sorted()
     }
-    
+
+    var count: Int {
+        return deliveries.count
+    }
+
     var dates: [Date] {
          return deliveries
             .map { Calendar.current.startOfDay(for: $0.date) }
@@ -33,32 +37,34 @@ struct DeliveryList {
             .sorted()
             .reversed()
     }
-    
-    var count: Int {
-        return deliveries.count
+
+    var filteredForToday: DeliveryList {
+        return DeliveryList(deliveries
+            .filter { Calendar.current.isDateInToday($0.date) }
+            .sorted(by: { $0.order < $1.order }))
     }
-    
+
+    var total: Double {
+        return deliveries.reduce(0) { $0 + $1.total }
+    }
+
     var totalCash: Double {
         return deliveries.reduce(0) { $0 + $1.cash }
     }
-    
+
     var totalCredit: Double {
         return deliveries.reduce(0) { $0 + $1.credit }
     }
-    
+
     var totalTripComp: Double {
         return deliveries.reduce(0) { $0 + $1.tripComp }
     }
-    
+
     var totalPayout: Double {
         return deliveries.reduce(0) { $0 + $1.payout }
     }
-    
+
     var totalExcludingPayout: Double {
         return deliveries.reduce(0) { $0 + $1.totalExcludingPayout }
-    }
-    
-    var total: Double {
-        return deliveries.reduce(0) { $0 + $1.total }
     }
 }
