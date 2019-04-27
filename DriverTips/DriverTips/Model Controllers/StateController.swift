@@ -24,5 +24,19 @@ class StateController {
     }
 
     // MARK: - Mutators
-
+    public func add(_ delivery: Delivery) {
+        worldState.deliveries.append(delivery)
+    }
+    
+    public func remove(_ delivery: Delivery) {
+        if let index = worldState.deliveries.firstIndex(where: { $0.identifier == delivery.identifier }) {
+            worldState.deliveries.remove(at: index)
+        }
+    }
+    
+    public func update(_ delivery: Delivery) {
+        if let index = worldState.deliveries.firstIndex(where: { $0.identifier == delivery.identifier }) {
+            worldState.deliveries[index] = delivery
+        }
+    }
 }

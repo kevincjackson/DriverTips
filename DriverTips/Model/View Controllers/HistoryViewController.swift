@@ -10,8 +10,8 @@ import UIKit
 
 class HistoryViewController: UITableViewController {
     
-    var deliveryStore: DeliveryStore!
-    
+    var stateController: StateController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -15,12 +15,14 @@ class DeliveriesViewController: UIViewController {
     @IBOutlet weak var hudTotalLabel: UILabel!
     @IBOutlet weak var hudPayoutLabel: UILabel!
     
-    var deliveryStore: DeliveryStore!
-    var deliveries: [Delivery]! {
+    var stateController: StateController!
+    var filteredDeliveries: [Delivery]! {
         didSet {
             updateHUD()
         }
     }
+    
+    var calendar = Calendar(identifier: .gregorian)
     var currencyFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -32,12 +34,11 @@ class DeliveriesViewController: UIViewController {
         super.viewDidLoad()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
-        deliveries = deliveryStore.deliveries
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        deliveries = deliveryStore.deliveries
+        filteredDeliveries = filterDeliveries()
         tableView.reloadData()
     }
     
@@ -53,7 +54,7 @@ class DeliveriesViewController: UIViewController {
             guard let row = tableView.indexPathForSelectedRow?.row else {
                 return
             }
-            editVC.delivery = deliveries[row]
+            editVC.delivery = filteredDeliveries[row]
         default:
             preconditionFailure("Unknown segue identifier.")
         }
@@ -65,19 +66,25 @@ class DeliveriesViewController: UIViewController {
         let editVC = segue.source as! EditDeliveryViewController
         if let delivery = editVC.delivery {
             if editVC.isNewDelivery {
-                deliveryStore.add(delivery)
+                stateController.add(delivery)
             }
             else {
-                deliveryStore.update(delivery)
+                stateController.update(delivery)
             }
         }
     }
     
     // MARK: - Helper Functions
+    private func filterDeliveries() -> [Delivery] {
+        return stateController.worldState.deliveries
+            .filter { calendar.isDateInToday($0.date) }
+            .sorted(by: { $0.order < $1.order })
+    }
+    
     private func updateHUD() {
-        hudDeliveriesLabel.text = "\(deliveries.count)"
-        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: deliveries.reduce(0) { $0 + $1.totalExPayout }))
-        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(value: deliveries.reduce(0) { $0 + $1.payout }))
+        hudDeliveriesLabel.text = "\(filteredDeliveries.count)"
+        hudTotalLabel.text =  currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.totalExPayout }))
+        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(value: filteredDeliveries.reduce(0) { $0 + $1.payout }))
     }
     
 }
@@ -86,13 +93,13 @@ class DeliveriesViewController: UIViewController {
 extension DeliveriesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return deliveryStore.deliveries.count
+        return filteredDeliveries.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryCell
-        let delivery = deliveries[indexPath.row]
+        let delivery = filteredDeliveries[indexPath.row]
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "h:mm a"
         
@@ -141,9 +148,9 @@ extension DeliveriesViewController: UITableViewDataSource {
     // Deletion
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let delivery = deliveries[indexPath.row]
-            deliveries.remove(at: indexPath.row)
-            deliveryStore.remove(delivery)
+            let delivery = filteredDeliveries[indexPath.row]
+            filteredDeliveries.remove(at: indexPath.row)
+            stateController.remove(delivery)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
@@ -153,7 +160,7 @@ extension DeliveriesViewController: UITableViewDataSource {
     // MARK: - Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
-        if deliveryStore.deliveries.isEmpty {
+        if filteredDeliveries.isEmpty {
             let footerView = UITableViewHeaderFooterView()
             footerView.backgroundView = UIView(frame: footerView.bounds)
             footerView.backgroundView?.backgroundColor = UIColor.white
@@ -167,7 +174,7 @@ extension DeliveriesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return deliveryStore.deliveries.isEmpty ? 60 : 0
+        return filteredDeliveries.isEmpty ? 60 : 0
     }
 }
 

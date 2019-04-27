@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7D2262EA220057160D /* Delivery.swift */; };
-		0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */; };
 		0A80FE892262920A005EE0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE872262920A005EE0AB /* Main.storyboard */; };
 		0A80FE8B2262920B005EE0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8A2262920B005EE0AB /* Assets.xcassets */; };
 		0A80FE8E2262920B005EE0AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */; };
@@ -21,11 +20,11 @@
 		0A8C482F2274BEBE00F74A55 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48272274BEBE00F74A55 /* HistoryViewController.swift */; };
 		0A8C48302274BEBE00F74A55 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48282274BEBE00F74A55 /* AddressViewController.swift */; };
 		0A8C48312274BEBE00F74A55 /* EditDeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48292274BEBE00F74A55 /* EditDeliveryViewController.swift */; };
+		0A8C48352274D67600F74A55 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C48342274D67600F74A55 /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A3FAC7D2262EA220057160D /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
-		0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStore.swift; sourceTree = "<group>"; };
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A80FE882262920A005EE0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A80FE8A2262920B005EE0AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		0A8C48272274BEBE00F74A55 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		0A8C48282274BEBE00F74A55 /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		0A8C48292274BEBE00F74A55 /* EditDeliveryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeliveryViewController.swift; sourceTree = "<group>"; };
+		0A8C48342274D67600F74A55 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +56,9 @@
 		0A507A70226295D300AB8763 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0A8C481F2274BD4600F74A55 /* WorldState.swift */,
-				0A3FAC7F2262F3C70057160D /* DeliveryStore.swift */,
+				0A8C48342274D67600F74A55 /* Array.swift */,
 				0A3FAC7D2262EA220057160D /* Delivery.swift */,
+				0A8C481F2274BD4600F74A55 /* WorldState.swift */,
 			);
 			name = Models;
 			path = ../Models;
@@ -67,11 +67,11 @@
 		0A507A71226295DA00AB8763 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A8C48282274BEBE00F74A55 /* AddressViewController.swift */,
 				0A8C48242274BEBE00F74A55 /* DeliveriesViewController.swift */,
 				0A8C48252274BEBE00F74A55 /* DeliveryCell.swift */,
-				0A8C48272274BEBE00F74A55 /* HistoryViewController.swift */,
-				0A8C48282274BEBE00F74A55 /* AddressViewController.swift */,
 				0A8C48292274BEBE00F74A55 /* EditDeliveryViewController.swift */,
+				0A8C48272274BEBE00F74A55 /* HistoryViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "../Model/View Controllers";
@@ -205,8 +205,8 @@
 				0A8C482F2274BEBE00F74A55 /* HistoryViewController.swift in Sources */,
 				0A8C481B2274BBB900F74A55 /* StorageController.swift in Sources */,
 				0A8C482D2274BEBE00F74A55 /* DeliveryCell.swift in Sources */,
+				0A8C48352274D67600F74A55 /* Array.swift in Sources */,
 				0A8C482E2274BEBE00F74A55 /* AppDelegate.swift in Sources */,
-				0A3FAC802262F3C70057160D /* DeliveryStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
