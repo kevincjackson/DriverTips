@@ -18,10 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Inject State
-        let navVC = window!.rootViewController as! UINavigationController
-        let deliveriesVC = navVC.topViewController as! DeliveriesViewController
+        let tabVC = window!.rootViewController as! UITabBarController
+        let nav0 = tabVC.viewControllers?[0] as! UINavigationController
+        let deliveriesVC = nav0.topViewController as! DeliveriesViewController
         deliveriesVC.deliveryStore = deliveryStore
 
+        let nav1 = tabVC.viewControllers?[1] as! UINavigationController
+        let historyVC = nav1.topViewController as! HistoryViewController
+        historyVC.deliveryStore = deliveryStore
+
+        let nav2 = tabVC.viewControllers?[2] as! UINavigationController
+        let addressVC = nav2.topViewController as! AddressViewController
+        addressVC.deliveryStore = deliveryStore
+        
         return true
     }
 

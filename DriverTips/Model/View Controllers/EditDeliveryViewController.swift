@@ -163,7 +163,7 @@ extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelega
         case 3:
             return currencyPickerOptions.cents.count
         default:
-            preconditionFailure()
+            preconditionFailure("Unknown pickerView component.")
         }
     }
 
@@ -178,7 +178,7 @@ extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelega
         case 3:
             return currencyPickerOptions.cents[row]
         default:
-            preconditionFailure()
+            preconditionFailure("Unknown pickerView component.")
         }
     }
 
@@ -195,7 +195,7 @@ extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelega
         case 2:
             payoutField.text = text
         default:
-            preconditionFailure()
+            preconditionFailure("Unknown pickerView tag.")
         }
     }
 }
