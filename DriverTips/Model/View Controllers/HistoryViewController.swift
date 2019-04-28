@@ -18,6 +18,7 @@ class HistoryViewController: UITableViewController {
         return df
     }()
 
+    // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -25,6 +26,21 @@ class HistoryViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "historyToDeliveries":
+            let deliveryVC = segue.destination as! DeliveriesViewController
+            let selectedDate = dates[tableView.indexPathForSelectedRow!.row]
+            deliveryVC.stateController = stateController
+            deliveryVC.filterFunction = {
+                $0.filter { Calendar.current.isDate($0.date, inSameDayAs: selectedDate) }
+            }
+        default:
+            preconditionFailure("Unkown segue identifier.")
+        }
+    }
+    
+    // MARK: - Table
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

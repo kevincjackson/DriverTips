@@ -24,6 +24,18 @@ class AddressViewController: UITableViewController {
         addresses = DeliveryList(stateController.worldState.deliveries).addresses
         tableView.reloadData()
     }
+     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "addressesToDeliveries":
+            let addressesVC = segue.destination as! DeliveriesViewController
+            let selectedAddress = addresses[tableView.indexPathForSelectedRow!.row]
+            addressesVC.stateController = stateController
+            addressesVC.filterFunction = { $0.filter { $0.address == selectedAddress } }
+        default:
+            preconditionFailure("Unknown segue identifier.")
+        }
+    }
 
     // MARK: - Table Methods
     override func numberOfSections(in tableView: UITableView) -> Int {

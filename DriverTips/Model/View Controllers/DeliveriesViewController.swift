@@ -21,6 +21,9 @@ class DeliveriesViewController: UIViewController {
             updateHUD()
         }
     }
+    var filterFunction: ([Delivery]) -> [Delivery] = { deliveries in
+        return DeliveryList(deliveries).filteredForToday.deliveries
+    }
     
     var calendar = Calendar(identifier: .gregorian)
     var currencyFormatter: NumberFormatter = {
@@ -38,7 +41,7 @@ class DeliveriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        deliveries = DeliveryList(stateController.worldState.deliveries).filteredForToday.deliveries
+        deliveries = filterFunction(stateController.worldState.deliveries)
         tableView.reloadData()
     }
     
