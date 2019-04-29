@@ -22,12 +22,6 @@ class EditDeliveryViewController: UITableViewController {
 
     var delivery: Delivery!
     var isNewDelivery = false
-    var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateStyle = .short
-        df.timeStyle = .short
-        return df
-    }()
     var datePicker: UIDatePicker!
     var toolbarWithDoneButton: UIToolbar = {
         let toolbar = UIToolbar()
@@ -85,7 +79,7 @@ class EditDeliveryViewController: UITableViewController {
         
         orderField.text = delivery.order != 0 ? "\(delivery.order)" : ""
         addressField.text = delivery.address
-        dateField.text = dateFormatter.string(from: delivery.date)
+        dateField.text = delivery.date.DTformattedDate
         cashField.text = delivery.cash != 0 ? "\(delivery.cash)" : ""
         creditField.text = delivery.credit != 0 ? "\(delivery.credit)" : ""
         tripCompField.text = delivery.tripComp != 0 ? "\(delivery.tripComp)" : ""
@@ -134,7 +128,7 @@ class EditDeliveryViewController: UITableViewController {
 
     @objc func datePickerSelectedDate() {
         delivery.date = datePicker.date
-        dateField.text = dateFormatter.string(from: delivery.date)
+        dateField.text = delivery.date.DTformattedDate
     }
 }
 

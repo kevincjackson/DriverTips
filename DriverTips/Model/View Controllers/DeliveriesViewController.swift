@@ -25,13 +25,6 @@ class DeliveriesViewController: UIViewController {
         return DeliveryList($0).filteredForToday.deliveries
     }
     
-    var calendar = Calendar(identifier: .gregorian)
-    var currencyFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        return formatter
-    }()
-
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,14 +71,11 @@ class DeliveriesViewController: UIViewController {
     }
     
     // MARK: - Helper Functions
-
     private func updateHUD() {
         let deliveryList = DeliveryList(deliveries)
         hudDeliveriesLabel.text = "\(deliveryList.count)"
-        hudTotalLabel.text = currencyFormatter.string(from: NSNumber(
-            value: deliveryList.totalExcludingPayout))
-        hudPayoutLabel.text = currencyFormatter.string(from: NSNumber(
-            value: deliveryList.totalPayout))
+        hudTotalLabel.text = deliveryList.totalExcludingPayout.DTformattedCurrency
+        hudPayoutLabel.text = deliveryList.totalPayout.DTformattedCurrency
     }
     
 }
