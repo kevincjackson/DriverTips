@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A016DA72277673200196AD6 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DA62277673200196AD6 /* Formatting.swift */; };
+		0A016DA922777C9600196AD6 /* ToolbarWithDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DA822777C9600196AD6 /* ToolbarWithDoneButton.swift */; };
+		0A016DAB2277892000196AD6 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A016DAA2277892000196AD6 /* CurrencyPicker.swift */; };
 		0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FAC7D2262EA220057160D /* Delivery.swift */; };
 		0A80FE892262920A005EE0AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE872262920A005EE0AB /* Main.storyboard */; };
 		0A80FE8B2262920B005EE0AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A80FE8A2262920B005EE0AB /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		0A016DA62277673200196AD6 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		0A016DA822777C9600196AD6 /* ToolbarWithDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToolbarWithDoneButton.swift; path = DriverTips/Views/ToolbarWithDoneButton.swift; sourceTree = SOURCE_ROOT; };
+		0A016DAA2277892000196AD6 /* CurrencyPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
 		0A3FAC7D2262EA220057160D /* Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		0A80FE802262920A005EE0AB /* DriverTips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriverTips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A80FE882262920A005EE0AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 				0A016DA62277673200196AD6 /* Formatting.swift */,
 				0A80FE872262920A005EE0AB /* Main.storyboard */,
 				0A80FE8C2262920B005EE0AB /* LaunchScreen.storyboard */,
+				0A016DA822777C9600196AD6 /* ToolbarWithDoneButton.swift */,
+				0A016DAA2277892000196AD6 /* CurrencyPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,9 +218,11 @@
 				0A8C482F2274BEBE00F74A55 /* HistoryViewController.swift in Sources */,
 				0A8C481B2274BBB900F74A55 /* StorageController.swift in Sources */,
 				0A8C482D2274BEBE00F74A55 /* DeliveryCell.swift in Sources */,
+				0A016DAB2277892000196AD6 /* CurrencyPicker.swift in Sources */,
 				0A8C48372274F11200F74A55 /* DeliveryList.swift in Sources */,
 				0A8C48352274D67600F74A55 /* Array.swift in Sources */,
 				0A8C482E2274BEBE00F74A55 /* AppDelegate.swift in Sources */,
+				0A016DA922777C9600196AD6 /* ToolbarWithDoneButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,12 @@ import Foundation
 // Formatters may be expensive operations, so keep them on the heap.
 class DTFormatter {
     
+    static let currencyFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        return numberFormatter
+    }()
+    
     static let dateAndTimeFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -23,12 +29,6 @@ class DTFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
         return dateFormatter
-    }()
-    
-    static let currencyFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        return numberFormatter
     }()
 }
 

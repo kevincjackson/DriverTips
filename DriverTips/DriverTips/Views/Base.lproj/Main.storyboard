@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cmd-SE-6tc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="637"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <prototypes>
@@ -544,7 +544,7 @@
                         <outlet property="creditField" destination="joV-EY-bzX" id="7TX-Q4-g1B"/>
                         <outlet property="dateField" destination="Sev-LH-ZAE" id="dYg-J4-bAc"/>
                         <outlet property="navItem" destination="cDe-1o-EeN" id="UwX-8j-ksL"/>
-                        <outlet property="notesField" destination="q8a-3U-4y8" id="PvA-BB-VOD"/>
+                        <outlet property="notesView" destination="q8a-3U-4y8" id="PvA-BB-VOD"/>
                         <outlet property="orderField" destination="bwa-0a-rQE" id="o9B-Fp-zan"/>
                         <outlet property="payoutField" destination="9vp-Sb-8dJ" id="P3v-55-sYM"/>
                         <outlet property="tripCompField" destination="7Z3-3y-dLW" id="nXM-kZ-xYw"/>

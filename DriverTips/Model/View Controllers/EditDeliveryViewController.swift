@@ -18,25 +18,11 @@ class EditDeliveryViewController: UITableViewController {
     @IBOutlet weak var creditField: UITextField!
     @IBOutlet weak var tripCompField: UITextField!
     @IBOutlet weak var payoutField: UITextField!
-    @IBOutlet weak var notesField: UITextView!
+    @IBOutlet weak var notesView: UITextView!
 
     var delivery: Delivery!
     var isNewDelivery = false
     var datePicker: UIDatePicker!
-    var toolbarWithDoneButton: UIToolbar = {
-        let toolbar = UIToolbar()
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
-        toolbar.setItems([space, done], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        toolbar.sizeToFit()
-        return toolbar
-    }()
-
-    let currencyPickerOptions = (
-        dollars: Array(0...300).map { String($0) },
-        cents: Array(0...99).map { String(format: "%02i", $0) }
-    )
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -69,13 +55,18 @@ class EditDeliveryViewController: UITableViewController {
         dateField.inputView = datePicker
 
         // Set Input Accessory Views
+        let toolbarWithDoneButton = ToolbarWithDoneButton(target: self, action: #selector(dismissKeyboard))
         [orderField, addressField, dateField, cashField, creditField, tripCompField, payoutField]
             .forEach { $0?.inputAccessoryView = toolbarWithDoneButton }
-        notesField.inputAccessoryView = toolbarWithDoneButton
+        notesView.inputAccessoryView = toolbarWithDoneButton
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
+        
+        if delivery.order == 0 {
+            orderField.becomeFirstResponder()
+        }
         
         orderField.text = delivery.order.DTformattedEditingStyle
         addressField.text = delivery.address
@@ -84,14 +75,7 @@ class EditDeliveryViewController: UITableViewController {
         creditField.text = delivery.credit.DTformattedEditingStyle
         tripCompField.text = delivery.tripComp.DTformattedEditingStyle
         payoutField.text = delivery.payout.DTformattedEditingStyle
-        notesField.text = delivery.notes
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if delivery.order == 0 {
-            orderField.becomeFirstResponder()
-        }
+        notesView.text = delivery.notes
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,7 +103,7 @@ class EditDeliveryViewController: UITableViewController {
         delivery.credit = Double(creditField.text!) ?? 0
         delivery.tripComp = Double(tripCompField.text!) ?? 0
         delivery.payout = Double(payoutField.text!) ?? 0
-        delivery.notes = notesField.text!
+        delivery.notes = notesView.text!
     }
 
     @objc func dismissKeyboard() {
@@ -151,11 +135,11 @@ extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelega
         case 0:
             return 1
         case 1:
-            return currencyPickerOptions.dollars.count
+            return CurrencyPicker.Options.dollars.count
         case 2:
             return 1
         case 3:
-            return currencyPickerOptions.cents.count
+            return CurrencyPicker.Options.cents.count
         default:
             preconditionFailure("Unknown pickerView component.")
         }
@@ -166,19 +150,19 @@ extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelega
         case 0:
             return "$"
         case 1:
-            return currencyPickerOptions.dollars[row]
+            return CurrencyPicker.Options.dollars[row]
         case 2:
             return "."
         case 3:
-            return currencyPickerOptions.cents[row]
+            return CurrencyPicker.Options.cents[row]
         default:
             preconditionFailure("Unknown pickerView component.")
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let dollars = currencyPickerOptions.dollars[pickerView.selectedRow(inComponent: 1)]
-        let cents = currencyPickerOptions.cents[pickerView.selectedRow(inComponent: 3)]
+        let dollars = CurrencyPicker.Options.dollars[pickerView.selectedRow(inComponent: 1)]
+        let cents = CurrencyPicker.Options.cents[pickerView.selectedRow(inComponent: 3)]
         let text = "\(dollars).\(cents)"
 
         switch pickerView.tag {
