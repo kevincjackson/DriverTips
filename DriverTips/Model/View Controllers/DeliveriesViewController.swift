@@ -13,7 +13,7 @@ class DeliveriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hudDeliveriesLabel: UILabel!
     @IBOutlet weak var hudTotalLabel: UILabel!
-    @IBOutlet weak var hudPayoutLabel: UILabel!
+    @IBOutlet weak var hudCashLabel: UILabel!
     
     var stateController: StateController!
     var deliveries: [Delivery]! {
@@ -73,9 +73,8 @@ class DeliveriesViewController: UIViewController {
         let deliveryList = DeliveryList(deliveries)
         hudDeliveriesLabel.text = "\(deliveryList.count)"
         hudTotalLabel.text = deliveryList.totalExcludingPayout.DTformattedCurrency
-        hudPayoutLabel.text = deliveryList.totalPayout.DTformattedCurrency
+        hudCashLabel.text = deliveryList.totalCash.DTformattedCurrency
     }
-    
 }
 
 // MARK: - Table View DataSource
