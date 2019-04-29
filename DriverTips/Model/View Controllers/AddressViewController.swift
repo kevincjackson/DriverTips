@@ -31,7 +31,7 @@ class AddressViewController: UITableViewController {
             let addressesVC = segue.destination as! DeliveriesViewController
             let selectedAddress = addresses[tableView.indexPathForSelectedRow!.row]
             addressesVC.stateController = stateController
-            addressesVC.filterFunction = { $0.filter { $0.address == selectedAddress } }
+            addressesVC.deliveriesFilter = { $0.filter { $0.address == selectedAddress } }
         default:
             preconditionFailure("Unknown segue identifier.")
         }

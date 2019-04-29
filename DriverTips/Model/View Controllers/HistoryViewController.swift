@@ -32,7 +32,7 @@ class HistoryViewController: UITableViewController {
             let deliveryVC = segue.destination as! DeliveriesViewController
             let selectedDate = dates[tableView.indexPathForSelectedRow!.row]
             deliveryVC.stateController = stateController
-            deliveryVC.filterFunction = {
+            deliveryVC.deliveriesFilter = {
                 $0.filter { Calendar.current.isDate($0.date, inSameDayAs: selectedDate) }
             }
         default:

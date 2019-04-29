@@ -10,7 +10,7 @@ import UIKit
 
 class DeliveriesViewController: UIViewController {
 
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var hudDeliveriesLabel: UILabel!
     @IBOutlet weak var hudTotalLabel: UILabel!
     @IBOutlet weak var hudPayoutLabel: UILabel!
@@ -21,8 +21,8 @@ class DeliveriesViewController: UIViewController {
             updateHUD()
         }
     }
-    var filterFunction: ([Delivery]) -> [Delivery] = { deliveries in
-        return DeliveryList(deliveries).filteredForToday.deliveries
+    var deliveriesFilter: ([Delivery]) -> [Delivery] = {
+        return DeliveryList($0).filteredForToday.deliveries
     }
     
     var calendar = Calendar(identifier: .gregorian)
@@ -41,7 +41,7 @@ class DeliveriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        deliveries = filterFunction(stateController.worldState.deliveries)
+        deliveries = deliveriesFilter(stateController.worldState.deliveries)
         tableView.reloadData()
     }
     
