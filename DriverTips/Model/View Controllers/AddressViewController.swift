@@ -28,10 +28,11 @@ class AddressViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "addressesToDeliveries":
-            let addressesVC = segue.destination as! DeliveriesViewController
+            let deliveriesVC = segue.destination as! DeliveriesViewController
             let selectedAddress = addresses[tableView.indexPathForSelectedRow!.row]
-            addressesVC.stateController = stateController
-            addressesVC.deliveriesFilter = { $0.filter { $0.address == selectedAddress } }
+            deliveriesVC.stateController = stateController
+            deliveriesVC.deliveriesFilter = { $0.filter { $0.address == selectedAddress } }
+            deliveriesVC.title = selectedAddress
         default:
             preconditionFailure("Unknown segue identifier.")
         }
@@ -47,10 +48,8 @@ class AddressViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "addressCell", for: indexPath)
         cell.textLabel?.text = addresses[indexPath.row]
-        
         return cell
     }
 }

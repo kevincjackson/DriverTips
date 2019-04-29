@@ -13,13 +13,13 @@
         <!--Deliveries-->
         <scene sceneID="ebu-4V-9DP">
             <objects>
-                <viewController id="cOi-gz-7j3" userLabel="Deliveries" customClass="DeliveriesViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Today" id="cOi-gz-7j3" userLabel="Deliveries" customClass="DeliveriesViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V5L-Uq-4zw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cmd-SE-6tc">
-                                <rect key="frame" x="0.0" y="140" width="414" height="585"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <prototypes>
@@ -599,7 +599,7 @@
         <!--History-->
         <scene sceneID="CEq-g7-A4F">
             <objects>
-                <tableViewController id="L0Q-I1-fhJ" customClass="HistoryViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="History" id="L0Q-I1-fhJ" customClass="HistoryViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Iuh-xJ-XPy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -639,7 +639,7 @@
         <!--Addresses-->
         <scene sceneID="R3e-jF-9RY">
             <objects>
-                <tableViewController id="KAJ-bX-SoL" customClass="AddressViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Addresses" id="KAJ-bX-SoL" customClass="AddressViewController" customModule="DriverTips" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yyr-mr-LQo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -714,6 +714,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="y8F-4m-jvf"/>
-        <segue reference="Qfv-aW-7ng"/>
+        <segue reference="K13-sX-uUi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -46,10 +46,8 @@ class DeliveriesViewController: UIViewController {
             editVC.isNewDelivery = true
         case "gotoEditDelivery":
             let editVC = segue.destination as! EditDeliveryViewController
+            let row = tableView.indexPathForSelectedRow!.row
             editVC.isNewDelivery = false
-            guard let row = tableView.indexPathForSelectedRow?.row else {
-                return
-            }
             editVC.delivery = deliveries[row]
         default:
             preconditionFailure("Unknown segue identifier.")
@@ -81,7 +79,7 @@ class DeliveriesViewController: UIViewController {
 }
 
 // MARK: - Table View DataSource
-extension DeliveriesViewController: UITableViewDataSource {
+extension DeliveriesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return deliveries.count
@@ -91,12 +89,10 @@ extension DeliveriesViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryCell
         let delivery = deliveries[indexPath.row]
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "h:mm a"
         
         cell.orderLabel.text = "#\(delivery.order)"
         cell.addressLabel.text = delivery.address
-        cell.dateLabel.text = dateFormatterPrint.string(from: delivery.date)
+        cell.dateLabel.text = delivery.date.DTformattedDateAndTime
         
         if delivery.cash != 0 {
             cell.cashLabel.text = String(format: "Cash $%.2f", delivery.cash)
@@ -168,6 +164,3 @@ extension DeliveriesViewController: UITableViewDataSource {
         return deliveries.isEmpty ? 60 : 0
     }
 }
-
-// MARK: - Table View Delegate
-extension DeliveriesViewController: UITableViewDelegate {}

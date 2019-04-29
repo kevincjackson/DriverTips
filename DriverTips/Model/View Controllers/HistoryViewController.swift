@@ -24,12 +24,13 @@ class HistoryViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "historyToDeliveries":
-            let deliveryVC = segue.destination as! DeliveriesViewController
+            let deliveriesVC = segue.destination as! DeliveriesViewController
             let selectedDate = dates[tableView.indexPathForSelectedRow!.row]
-            deliveryVC.stateController = stateController
-            deliveryVC.deliveriesFilter = {
+            deliveriesVC.stateController = stateController
+            deliveriesVC.deliveriesFilter = {
                 $0.filter { Calendar.current.isDate($0.date, inSameDayAs: selectedDate) }
             }
+            deliveriesVC.title = selectedDate.DTformattedDate
         default:
             preconditionFailure("Unkown segue identifier.")
         }
