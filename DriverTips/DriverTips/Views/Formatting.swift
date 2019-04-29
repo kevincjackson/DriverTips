@@ -8,19 +8,54 @@
 
 import Foundation
 
-extension Date {
-    var DTformattedDate: String {
+// MARK: Driver Tip Formatters
+// Formatters may be expensive operations, so keep them on the heap.
+class DTFormatter {
+    
+    static let dateAndTimeFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: self)
+        return dateFormatter
+    }()
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        return dateFormatter
+    }()
+    
+    static let currencyFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        return numberFormatter
+    }()
+}
+
+
+// MARK: - Extensions
+extension Date {
+    var DTformattedDateAndTime: String {
+        return DTFormatter.dateAndTimeFormatter.string(from: self)
+    }
+    
+    var DTformattedDate: String {
+        return DTFormatter.dateFormatter.string(from: self)
     }
 }
 
 extension Double {
     var DTformattedCurrency: String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .currency
-        return numberFormatter.string(from: NSNumber(value: self))!
+        return DTFormatter.currencyFormatter.string(from: NSNumber(value: self))!
+    }
+    
+    var DTformattedEditingStyle: String {
+        return self != 0 ? "\(self)" : ""
+    }
+}
+
+extension Int {
+    var DTformattedEditingStyle: String {
+        return self != 0 ? "\(self)" : ""
     }
 }

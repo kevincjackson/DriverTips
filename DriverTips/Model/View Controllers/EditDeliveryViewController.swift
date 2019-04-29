@@ -77,13 +77,13 @@ class EditDeliveryViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
         
-        orderField.text = delivery.order != 0 ? "\(delivery.order)" : ""
+        orderField.text = delivery.order.DTformattedEditingStyle
         addressField.text = delivery.address
-        dateField.text = delivery.date.DTformattedDate
-        cashField.text = delivery.cash != 0 ? "\(delivery.cash)" : ""
-        creditField.text = delivery.credit != 0 ? "\(delivery.credit)" : ""
-        tripCompField.text = delivery.tripComp != 0 ? "\(delivery.tripComp)" : ""
-        payoutField.text = delivery.payout != 0 ? "\(delivery.payout)" : ""
+        dateField.text = delivery.date.DTformattedDateAndTime
+        cashField.text = delivery.cash.DTformattedEditingStyle
+        creditField.text = delivery.credit.DTformattedEditingStyle
+        tripCompField.text = delivery.tripComp.DTformattedEditingStyle
+        payoutField.text = delivery.payout.DTformattedEditingStyle
         notesField.text = delivery.notes
     }
     
@@ -128,7 +128,7 @@ class EditDeliveryViewController: UITableViewController {
 
     @objc func datePickerSelectedDate() {
         delivery.date = datePicker.date
-        dateField.text = delivery.date.DTformattedDate
+        dateField.text = delivery.date.DTformattedDateAndTime
     }
 }
 

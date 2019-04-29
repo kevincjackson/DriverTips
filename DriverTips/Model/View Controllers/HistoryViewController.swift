@@ -12,11 +12,6 @@ class HistoryViewController: UITableViewController {
     
     var stateController: StateController!
     var dates: [Date]!
-    var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateStyle = .full
-        return df
-    }()
 
     // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +48,7 @@ class HistoryViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
         let date = dates[indexPath.row]
-        cell.textLabel?.text = dateFormatter.string(from: date)
+        cell.textLabel?.text = date.DTformattedDate
         
         return cell
     }
