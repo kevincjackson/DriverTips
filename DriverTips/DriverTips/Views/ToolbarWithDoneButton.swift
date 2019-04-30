@@ -10,14 +10,14 @@ import UIKit
 
 class ToolbarWithDoneButton: UIToolbar {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
- 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
     convenience init(target: Any, action: Selector) {
         self.init(frame: CGRect.zero)
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
