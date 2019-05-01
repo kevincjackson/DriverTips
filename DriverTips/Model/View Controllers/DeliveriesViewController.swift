@@ -15,8 +15,8 @@ class DeliveriesViewController: UIViewController {
     var stateController: StateController!
     var deliveries = [Delivery]() {
         didSet {
-            hudVC!.deliveries = deliveries
-            hudVC!.updateHUD()
+            hudVC?.deliveries = deliveries
+            hudVC?.update()
         }
     }
     var deliveriesFilter: ([Delivery]) -> [Delivery] = {
@@ -51,7 +51,7 @@ class DeliveriesViewController: UIViewController {
         case "gotoHUD":
             let localHudVC = segue.destination as! HUDViewController
             hudVC = localHudVC
-            hudVC!.deliveries = deliveries
+            hudVC?.deliveries = deliveries
         default:
             preconditionFailure("Unknown segue identifier.")
         }

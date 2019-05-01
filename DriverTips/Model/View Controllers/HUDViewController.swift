@@ -21,10 +21,9 @@ class HUDViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateHUD()
     }
 
-    func updateHUD() {
+    func update() {
         let list = DeliveryList(deliveries)
         deliveriesLabel.text = "\(list.count)"
         totalExPayoutLabel.text = list.totalExcludingPayout.DTformattedCurrency
