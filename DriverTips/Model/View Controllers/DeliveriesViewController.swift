@@ -11,19 +11,18 @@ import UIKit
 class DeliveriesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var hudDeliveriesLabel: UILabel!
-    @IBOutlet weak var hudTotalLabel: UILabel!
-    @IBOutlet weak var hudCashLabel: UILabel!
-    
+
     var stateController: StateController!
-    var deliveries: [Delivery]! {
+    var deliveries = [Delivery]() {
         didSet {
-//            updateHUD()
+            hudVC!.deliveries = deliveries
+            hudVC!.updateHUD()
         }
     }
     var deliveriesFilter: ([Delivery]) -> [Delivery] = {
         return DeliveryList($0).filteredForToday.deliveries
     }
+    var hudVC: HUDViewController?
     
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
@@ -50,7 +49,9 @@ class DeliveriesViewController: UIViewController {
             editVC.isNewDelivery = false
             editVC.delivery = deliveries[row]
         case "gotoHUD":
-            break
+            let localHudVC = segue.destination as! HUDViewController
+            hudVC = localHudVC
+            hudVC!.deliveries = deliveries
         default:
             preconditionFailure("Unknown segue identifier.")
         }
@@ -68,14 +69,6 @@ class DeliveriesViewController: UIViewController {
                 stateController.update(delivery)
             }
         }
-    }
-    
-    // MARK: - Helper Functions
-    private func updateHUD() {
-        let deliveryList = DeliveryList(deliveries)
-        hudDeliveriesLabel.text = "\(deliveryList.count)"
-        hudTotalLabel.text = deliveryList.totalExcludingPayout.DTformattedCurrency
-        hudCashLabel.text = deliveryList.totalCash.DTformattedCurrency
     }
 }
 
