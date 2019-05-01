@@ -23,10 +23,7 @@ class HUDViewController: UIViewController {
 
     var deliveries = [Delivery]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+    // MARK: - Helper Functions
     func update() {
         let list = DeliveryList(deliveries)
         

@@ -32,7 +32,6 @@ class DTFormatter {
     }()
 }
 
-
 // MARK: - Extensions
 extension Date {
     var DTformattedDateAndTime: String {
