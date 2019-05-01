@@ -18,7 +18,7 @@ class DeliveriesViewController: UIViewController {
     var stateController: StateController!
     var deliveries: [Delivery]! {
         didSet {
-            updateHUD()
+//            updateHUD()
         }
     }
     var deliveriesFilter: ([Delivery]) -> [Delivery] = {
@@ -49,6 +49,8 @@ class DeliveriesViewController: UIViewController {
             let row = tableView.indexPathForSelectedRow!.row
             editVC.isNewDelivery = false
             editVC.delivery = deliveries[row]
+        case "gotoHUD":
+            break
         default:
             preconditionFailure("Unknown segue identifier.")
         }
@@ -126,7 +128,7 @@ extension DeliveriesViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.notesLabel.text = delivery.notes
-        cell.totalExPayoutLabel.text = String(format: "$%.2f", delivery.totalExcludingPayout)
+
 
         return cell
     }
