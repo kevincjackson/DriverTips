@@ -31,7 +31,7 @@
                                         </connections>
                                     </containerView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cmd-SE-6tc">
-                                        <rect key="frame" x="0.0" y="59.999999999999972" width="414" height="510.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="60" width="414" height="511"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                         <prototypes>
@@ -142,13 +142,6 @@
                                             <outlet property="delegate" destination="cOi-gz-7j3" id="pHc-2a-Qkb"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmy-PL-UtY" userLabel="Border">
-                                        <rect key="frame" x="0.0" y="570.33333333333337" width="414" height="0.66666666666662877"/>
-                                        <color key="backgroundColor" red="0.69804400205612183" green="0.69803071022033691" blue="0.698039710521698" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.67000000000000004" id="v7S-gE-MKn"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
