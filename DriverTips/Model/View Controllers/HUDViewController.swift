@@ -16,7 +16,11 @@ class HUDViewController: UIViewController {
     @IBOutlet weak var totalCashLabel: UILabel!
     @IBOutlet weak var totalCreditLabel: UILabel!
     @IBOutlet weak var totalTripCompLabel: UILabel!
-    
+    @IBOutlet weak var payoutStack: UIStackView!
+    @IBOutlet weak var cashStack: UIStackView!
+    @IBOutlet weak var creditStack: UIStackView!
+    @IBOutlet weak var tripCompStack: UIStackView!
+
     var deliveries = [Delivery]()
     
     override func viewDidLoad() {
@@ -25,11 +29,19 @@ class HUDViewController: UIViewController {
 
     func update() {
         let list = DeliveryList(deliveries)
+        
+        // Update labels
         deliveriesLabel.text = "\(list.count)"
         totalExPayoutLabel.text = list.totalExcludingPayout.DTformattedCurrency
         totalPayoutLabel.text = list.totalPayout.DTformattedCurrency
         totalCashLabel.text = list.totalCash.DTformattedCurrency
         totalCreditLabel.text = list.totalCredit.DTformattedCurrency
         totalTripCompLabel.text = list.totalTripComp.DTformattedCurrency
+        
+        // Hides category if its' total is zero.
+        payoutStack.isHidden = list.totalPayout == 0
+        cashStack.isHidden = list.totalCash == 0
+        creditStack.isHidden = list.totalCredit == 0
+        tripCompStack.isHidden = list.totalTripComp == 0
     }
 }
