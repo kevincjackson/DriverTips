@@ -28,7 +28,8 @@ class DeliveriesViewController: UIViewController {
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableView.automaticDimension
+        
+        // Don't delete; allows storyboard to have custom height
         tableView.estimatedRowHeight = 100
     }
     

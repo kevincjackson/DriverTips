@@ -14,10 +14,6 @@ class AddressViewController: UITableViewController {
     var addresses: [String]!
     
     // MARK: - View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
