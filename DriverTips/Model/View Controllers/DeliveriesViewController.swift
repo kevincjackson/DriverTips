@@ -13,16 +13,17 @@ class DeliveriesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var stateController: StateController!
-    var deliveries = [Delivery]() {
+    var deliveriesFilter: ([Delivery]) -> [Delivery] = {
+        return DeliveryList($0).filteredForToday.deliveries
+    }
+    
+    private var deliveries = [Delivery]() {
         didSet {
             hudVC?.deliveries = deliveries
             hudVC?.update()
         }
     }
-    var deliveriesFilter: ([Delivery]) -> [Delivery] = {
-        return DeliveryList($0).filteredForToday.deliveries
-    }
-    var hudVC: HUDViewController?
+    private var hudVC: HUDViewController?
     
     //MARK: - View Life Cycle`
     override func viewDidLoad() {
@@ -122,7 +123,6 @@ extension DeliveriesViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.notesLabel.text = delivery.notes
 
-
         return cell
     }
     
@@ -135,9 +135,7 @@ extension DeliveriesViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {}
-    
+
     // MARK: - Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         
