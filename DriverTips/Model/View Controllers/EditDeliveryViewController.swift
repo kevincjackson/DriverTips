@@ -41,10 +41,10 @@ class EditDeliveryViewController: UITableViewController {
         [cashField, creditField, payoutField]
             .enumerated()
             .forEach {
-                let currencyPicker = UIPickerView()
+                let currencyPicker = CurrencyPicker()
                 currencyPicker.tag = $0
-                currencyPicker.delegate = self
-                currencyPicker.dataSource = self
+
+                currencyPicker.addTarget(self, action: #selector(currencyPickerValueChanged(_:)), for: .valueChanged)
                 $1?.inputView = currencyPicker
             }
 
@@ -55,10 +55,11 @@ class EditDeliveryViewController: UITableViewController {
         dateField.inputView = datePicker
 
         // Set Input Accessory Views
-        let toolbarWithDoneButton = ToolbarWithDoneButton(target: self, action: #selector(dismissKeyboard))
+        let dismissalToolbar = DismissalToolbar()
+        dismissalToolbar.addTarget(self, action: #selector(dismissKeyboard), for: .touchUpInside)
         [orderField, addressField, dateField, cashField, creditField, tripCompField, payoutField]
-            .forEach { $0?.inputAccessoryView = toolbarWithDoneButton }
-        notesView.inputAccessoryView = toolbarWithDoneButton
+            .forEach { $0?.inputAccessoryView = dismissalToolbar }
+        notesView.inputAccessoryView = dismissalToolbar
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +115,19 @@ class EditDeliveryViewController: UITableViewController {
         delivery.date = datePicker.date
         dateField.text = delivery.date.DTformattedDateAndTime
     }
+    
+    @objc func currencyPickerValueChanged(_ sender: CurrencyPicker) {
+        switch sender.tag {
+        case 0:
+            cashField.text = String(sender.selectedAmount)
+        case 1:
+            creditField.text = String(sender.selectedAmount)
+        case 2:
+            payoutField.text = String(sender.selectedAmount)
+        default:
+            preconditionFailure("Unknown currency picker")
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -121,59 +135,5 @@ extension EditDeliveryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-// MARK: - Currency Picker
-extension EditDeliveryViewController: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 4
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        switch component {
-        case 0:
-            return 1
-        case 1:
-            return CurrencyPicker.Options.dollars.count
-        case 2:
-            return 1
-        case 3:
-            return CurrencyPicker.Options.cents.count
-        default:
-            preconditionFailure("Unknown pickerView component.")
-        }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component {
-        case 0:
-            return "$"
-        case 1:
-            return CurrencyPicker.Options.dollars[row]
-        case 2:
-            return "."
-        case 3:
-            return CurrencyPicker.Options.cents[row]
-        default:
-            preconditionFailure("Unknown pickerView component.")
-        }
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let dollars = CurrencyPicker.Options.dollars[pickerView.selectedRow(inComponent: 1)]
-        let cents = CurrencyPicker.Options.cents[pickerView.selectedRow(inComponent: 3)]
-        let text = "\(dollars).\(cents)"
-
-        switch pickerView.tag {
-        case 0:
-            cashField.text = text
-        case 1:
-            creditField.text = text
-        case 2:
-            payoutField.text = text
-        default:
-            preconditionFailure("Unknown pickerView tag.")
-        }
     }
 }
