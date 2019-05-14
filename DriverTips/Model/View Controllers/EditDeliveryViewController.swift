@@ -23,6 +23,7 @@ class EditDeliveryViewController: UITableViewController {
     var delivery: Delivery!
     var isNewDelivery = false
     var datePicker: UIDatePicker!
+    var textFieldDelegate = TextFieldDelegate()
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -43,11 +44,13 @@ class EditDeliveryViewController: UITableViewController {
             .forEach {
                 let currencyPicker = CurrencyPicker()
                 currencyPicker.tag = $0
-
                 currencyPicker.addTarget(self, action: #selector(currencyPickerValueChanged(_:)), for: .valueChanged)
                 $1?.inputView = currencyPicker
             }
 
+        // Setup Address Field to dismiss keyboard
+        addressField.delegate = textFieldDelegate
+        
         // Setup Date Picker
         datePicker = UIDatePicker()
         datePicker.setDate(delivery.date, animated: false)
@@ -127,13 +130,5 @@ class EditDeliveryViewController: UITableViewController {
         default:
             preconditionFailure("Unknown currency picker")
         }
-    }
-}
-
-// MARK: - UITextFieldDelegate
-extension EditDeliveryViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

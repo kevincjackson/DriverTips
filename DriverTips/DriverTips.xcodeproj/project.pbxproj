@@ -28,6 +28,7 @@
 		0AF06B3C228B5D1B006C93A2 /* DismissalToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF06B3B228B5D1B006C93A2 /* DismissalToolbar.swift */; };
 		0AF06B3F228B5DA4006C93A2 /* CurrencyPickerDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF06B3D228B5DA3006C93A2 /* CurrencyPickerDataDelegate.swift */; };
 		0AF06B40228B5DA4006C93A2 /* CurrencyPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF06B3E228B5DA4006C93A2 /* CurrencyPicker.swift */; };
+		0AF06B42228B6524006C93A2 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF06B41228B6524006C93A2 /* TextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		0AF06B3B228B5D1B006C93A2 /* DismissalToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissalToolbar.swift; sourceTree = "<group>"; };
 		0AF06B3D228B5DA3006C93A2 /* CurrencyPickerDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPickerDataDelegate.swift; sourceTree = "<group>"; };
 		0AF06B3E228B5DA4006C93A2 /* CurrencyPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyPicker.swift; sourceTree = "<group>"; };
+		0AF06B41228B6524006C93A2 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				0A016DA62277673200196AD6 /* Formatting.swift */,
 				0A80FE872262920A005EE0AB /* Main.storyboard */,
 				0AD81FF82283AF9E0042C143 /* LaunchScreen.storyboard */,
+				0AF06B41228B6524006C93A2 /* TextFieldDelegate.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A8C481E2274BC8200F74A55 /* StateController.swift in Sources */,
+				0AF06B42228B6524006C93A2 /* TextFieldDelegate.swift in Sources */,
 				0A3FAC7E2262EA220057160D /* Delivery.swift in Sources */,
 				0A8C48312274BEBE00F74A55 /* EditDeliveryViewController.swift in Sources */,
 				0A8C48302274BEBE00F74A55 /* AddressViewController.swift in Sources */,
